@@ -1,7 +1,7 @@
 {
-	"name": "@alessiofrittoli/node-module-starter",
-	"version": "0.2.0",
-	"description": "Basic Node Module repository",
+	"name": "@alessiofrittoli/crypto-json-web-token",
+	"version": "0.1.0",
+	"description": "Lightweight TypeScript JSON Web Tokens library",
 	"author": {
 		"name": "Alessio Frittoli",
 		"email": "info@alessiofrittoli.it",
@@ -10,17 +10,17 @@
 	"license": "MIT",
 	"keywords": [
 		"nodejs",
-		"npm",
-		"node_modules"
+		"jwt",
+		"json-web-tokens"
 	],
-	"homepage": "https://github.com/alessiofrittoli/node-module-starter#readme",
+	"homepage": "https://github.com/alessiofrittoli/crypto-json-web-token#readme",
 	"bugs": {
-		"url": "https://github.com/alessiofrittoli/node-module-starter/issues",
+		"url": "https://github.com/alessiofrittoli/crypto-json-web-token/issues",
 		"email": "info@alessiofrittoli.it"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/alessiofrittoli/node-module-starter.git"
+		"url": "git+https://github.com/alessiofrittoli/crypto-json-web-token.git"
 	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -30,12 +30,10 @@
 	],
 	"sideEffects": false,
 	"scripts": {
-		"build": "eslint && pnpm test:ci && pnpm test:ci:jsdom && tsup",
+		"build": "eslint && pnpm test:ci && tsup",
 		"lint": "eslint",
 		"test": "jest --watchAll --verbose",
-		"test:jsdom": "JSDOM=true pnpm test",
 		"test:ci": "jest --ci --verbose",
-		"test:ci:jsdom": "JSDOM=true pnpm test:ci",
 		"test:jest": "pnpm test jest.test.ts",
 		"test:jest:jsdom": "JSDOM=true pnpm test:jest"
 	},

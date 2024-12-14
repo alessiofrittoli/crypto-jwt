@@ -1,56 +1,35 @@
-# Node Module Starter 🛠️
+# Crypto JSON Web Token ⛓️
 
-Version 0.2.0
+Version 0.1.0
 
-## Starter repository for developing node_modules
+## Lightweight TypeScript JSON Web Tokens library
 
 ### Table of Contents
 
 - [Getting started](#getting-started)
-- [Development](#development)
-	- [ESLint](#eslint)
-	- [Jest](#jest)
 - [Contributing](#contributing)
 - [Security](#security)
 - [Credits](#made-with-)
 
 ---
 
-### Getting started (delete once cloned in your project)
+### Getting started
 
-Run the following command to start using `node-module-starter` for your projects:
-
-```bash
-git clone git@github.com:alessiofrittoli/node-module-starter.git && git remote remove origin
-```
-
-install dependencies
+Run the following command to start using `crypto-json-web-token` in your projects:
 
 ```bash
-pnpm i
-```
-
-Read the [Creating a repository from a template - GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for more in-detail informations about creating a new Repository from a template using GitHub web interface.
-
----
-
-### Getting started (customize based on your project needs)
-
-Run the following command to start using `{package_name}` in your projects:
-
-```bash
-npm i {package_name}
+npm i @alessiofrittoli/crypto-json-web-token
 ```
 
 or using `pnpm`
 
 ```bash
-pnpm i {package_name}
+pnpm i @alessiofrittoli/crypto-json-web-token
 ```
 
 ---
 
-### Development
+<!-- ### Development
 
 #### Install depenendencies
 
@@ -88,14 +67,8 @@ Run all the defined test suites by running the following:
 # Run tests and watch file changes.
 pnpm test
 
-# Run tests and watch file changes with jest-environment-jsdom.
-pnpm test:jsdom
-
 # Run tests in a CI environment.
 pnpm test:ci
-
-# Run tests in a CI environment with jest-environment-jsdom.
-pnpm test:ci:jsdom
 ```
 
 You can eventually run specific suits like so:
@@ -105,7 +78,7 @@ pnpm test:jest
 pnpm test:jest:jsdom
 ```
 
----
+--- -->
 
 ### Contributing
 
