@@ -1,4 +1,4 @@
-# Contributing to Crypto JSON Web Token ⛓️
+# Contributing to Crypto JSON Web Token 🔗
 
 We’re excited that you’re interested in contributing to Crypto JSON Web Token! This guide will help you get started.
 
@@ -8,7 +8,7 @@ We’re excited that you’re interested in contributing to Crypto JSON Web Toke
 
 If you find a bug, have a question, or want to suggest a new feature:
 
-- Search Existing Issues: Check the [Issues](https://github.com/alessiofrittoli/crypto-json-web-token/issues) tab to see if your concern has already been addressed.
+- Search Existing Issues: Check the [Issues](https://github.com/alessiofrittoli/crypto-jwt/issues) tab to see if your concern has already been addressed.
 - Create a New Issue: If not, open a new issue. Please provide:
 	- A clear and descriptive title.
 	- Detailed steps to reproduce the issue (if applicable).
@@ -18,12 +18,12 @@ If you find a bug, have a question, or want to suggest a new feature:
 
 Please, take a look at [Contributing to a project - GitHub Docs](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) page for more in-detail informations.
 
-- Go to the [repository page](https://github.com/alessiofrittoli/crypto-json-web-token).
+- Go to the [repository page](https://github.com/alessiofrittoli/crypto-jwt).
 - Click the Fork button.
 - Clone your fork to your local machine:
 
 ```bash
-git clone https://github.com/your-username/crypto-json-web-token.git
+git clone https://github.com/your-username/crypto-jwt.git
 ```
 
 ### 3. Create a Branch
@@ -33,7 +33,7 @@ To make changes:
 - Navigate to your cloned repository:
 
 ```bash
-cd crypto-json-web-token  
+cd crypto-jwt  
 ```
 
 - Create and switch to a new branch:
