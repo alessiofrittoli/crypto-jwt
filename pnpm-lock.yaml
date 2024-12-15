@@ -7,6 +7,19 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@alessiofrittoli/crypto-encoder':
+        specifier: ^1.1.0
+        version: 1.1.0
+      '@alessiofrittoli/crypto-signature':
+        specifier: ^1.1.0
+        version: 1.1.0
+      '@alessiofrittoli/exception':
+        specifier: ^0.1.0
+        version: 0.1.0
+      '@alessiofrittoli/type-utils':
+        specifier: ^1.0.0
+        version: 1.0.0
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
@@ -52,6 +65,30 @@ importers:
         version: 8.18.0(eslint@9.17.0)(typescript@5.7.2)
 
 packages:
+
+  '@alessiofrittoli/crypto-algorithm@1.2.0':
+    resolution: {integrity: sha512-j6OQzQqyy4gI/5tNzTFheDNgTfEuXXYUiTDOBZtQ7thExhRakwVr6V4futacpVyjEdHujAQFGV0Mvz3nCjpVUA==}
+
+  '@alessiofrittoli/crypto-buffer@2.0.1':
+    resolution: {integrity: sha512-hTFnVRawDlDJUkY0fTgEbsbCP+lQ6cXqAyzrVp/dn7AB+neWb1JMzLJRGC9kiImPhmuEsW3/R+d/JyXSU76msA==}
+
+  '@alessiofrittoli/crypto-encoder@1.1.0':
+    resolution: {integrity: sha512-qq/QPPaRF+hNEV2Szc7xlqef8N4NfrOT4vJS87g4d4WAVYLpPps24Hq8a8bFI0MH+q9ZppOT7UBUHZGT3TRiyQ==}
+
+  '@alessiofrittoli/crypto-key@1.0.0':
+    resolution: {integrity: sha512-82N4Ksby0BAXCWod2uXDiunQ9OVgSzGXXCBc9NgrzX386g+DSKIcFekHf6JPgXJv5TbrvpbPXmolWJFobY0AjQ==}
+
+  '@alessiofrittoli/crypto-signature@1.1.0':
+    resolution: {integrity: sha512-e9mZGFDE4O/HX55O9P9ev32ttk35ix2L4agPhWI5oxg7XkkbZuOeJ4JPm8NShyPx7NvbCRaSTNf7C63lXLWepQ==}
+
+  '@alessiofrittoli/exception@0.1.0':
+    resolution: {integrity: sha512-w9fOxjscIlIBQHjaj4zjE0WD9ll1u1+wM7jeSTG6TFn/iFMeC8XZgGZjLrtW17EiAUCpPsUCc+e4jsNS/dt2hA==}
+
+  '@alessiofrittoli/type-utils@0.3.2':
+    resolution: {integrity: sha512-VbrmEWFueHfSYRBvzu6WjrzH9pyqt8QNxNQ52Pc8LxyWWX8RUWK6xhfrF3HHUw27b+d2FqHNk5HVf3pHVC1ZPg==}
+
+  '@alessiofrittoli/type-utils@1.0.0':
+    resolution: {integrity: sha512-a1ohu7g23s/MRVqs5d67yEKMSyz6IMDpCukHWJ9tf4SGyEvgdnPpmySOn6YJEgopYUlOn/YW8mBBUW5dy6ZSFA==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -2234,6 +2271,32 @@ packages:
     engines: {node: '>=10'}
 
 snapshots:
+
+  '@alessiofrittoli/crypto-algorithm@1.2.0': {}
+
+  '@alessiofrittoli/crypto-buffer@2.0.1': {}
+
+  '@alessiofrittoli/crypto-encoder@1.1.0':
+    dependencies:
+      '@alessiofrittoli/crypto-buffer': 2.0.1
+      '@alessiofrittoli/type-utils': 0.3.2
+
+  '@alessiofrittoli/crypto-key@1.0.0':
+    dependencies:
+      '@alessiofrittoli/crypto-algorithm': 1.2.0
+      '@alessiofrittoli/crypto-buffer': 2.0.1
+
+  '@alessiofrittoli/crypto-signature@1.1.0':
+    dependencies:
+      '@alessiofrittoli/crypto-algorithm': 1.2.0
+      '@alessiofrittoli/crypto-buffer': 2.0.1
+      '@alessiofrittoli/crypto-key': 1.0.0
+
+  '@alessiofrittoli/exception@0.1.0': {}
+
+  '@alessiofrittoli/type-utils@0.3.2': {}
+
+  '@alessiofrittoli/type-utils@1.0.0': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:

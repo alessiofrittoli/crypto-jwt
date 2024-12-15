@@ -18,8 +18,8 @@
 		"resolveJsonModule": true,
 		"paths": {
 			"@/*": [ "./src/*" ]
-		},
+		}
 	},
-	"include": [ "src", "__tests__" ],
+	"include": [ "src", "__tests__", "type-utils.d.ts" ],
 	"exclude": [ "node_modules" ]
 }
