@@ -1,4 +1,4 @@
-# Crypto JSON Web Token ⛓️
+# Crypto JSON Web Token 🔗
 
 Version 0.1.0
 

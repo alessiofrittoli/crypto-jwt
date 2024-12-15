@@ -1,4 +1,4 @@
-# Contributing to Crypto JSON Web Token ⛓️
+# Contributing to Crypto JSON Web Token 🔗
 
 We’re excited that you’re interested in contributing to Crypto JSON Web Token! This guide will help you get started.
 
