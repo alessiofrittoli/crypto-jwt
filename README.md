@@ -15,16 +15,16 @@ Version 0.1.0
 
 ### Getting started
 
-Run the following command to start using `crypto-json-web-token` in your projects:
+Run the following command to start using `crypto-jwt` in your projects:
 
 ```bash
-npm i @alessiofrittoli/crypto-json-web-token
+npm i @alessiofrittoli/crypto-jwt
 ```
 
 or using `pnpm`
 
 ```bash
-pnpm i @alessiofrittoli/crypto-json-web-token
+pnpm i @alessiofrittoli/crypto-jwt
 ```
 
 ---

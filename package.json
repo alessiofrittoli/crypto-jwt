@@ -1,5 +1,5 @@
 {
-	"name": "@alessiofrittoli/crypto-json-web-token",
+	"name": "@alessiofrittoli/crypto-jwt",
 	"version": "0.1.0",
 	"description": "Lightweight TypeScript JSON Web Tokens library",
 	"author": {
@@ -13,14 +13,14 @@
 		"jwt",
 		"json-web-tokens"
 	],
-	"homepage": "https://github.com/alessiofrittoli/crypto-json-web-token#readme",
+	"homepage": "https://github.com/alessiofrittoli/crypto-jwt#readme",
 	"bugs": {
-		"url": "https://github.com/alessiofrittoli/crypto-json-web-token/issues",
+		"url": "https://github.com/alessiofrittoli/crypto-jwt/issues",
 		"email": "info@alessiofrittoli.it"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/alessiofrittoli/crypto-json-web-token.git"
+		"url": "git+https://github.com/alessiofrittoli/crypto-jwt.git"
 	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
