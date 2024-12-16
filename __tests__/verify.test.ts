@@ -13,7 +13,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 
 		const jwt = new Jwt<string>( {
-			value: token,
+			token: token,
 		} )
 
 		expect( typeof jwt.payload.data ).toBe( 'string' )
@@ -29,7 +29,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 
 		const jwt = new Jwt<{ property: string }>( {
-			value: token,
+			token: token,
 		} )
 
 		expect( 'property' in jwt.payload ).toBe( true )
@@ -46,7 +46,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			iss		: 'alessiofrittoli.it',
 		} )
@@ -63,7 +63,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			jti		: 'a445be00-7d03-4502-9722-2b75d1bdc0ff',
 		} )
@@ -82,7 +82,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			aud		: [ requestOrigin ],
 		} )
@@ -102,7 +102,7 @@ describe( 'Jwt.verify()', () => {
 
 		try {
 			new Jwt( {
-				value	: token,
+				token	: token,
 				key		: secretKey,
 			} ).verify()
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -124,7 +124,7 @@ describe( 'Jwt.verify()', () => {
 		} ).sign()
 		try {
 			new Jwt( {
-				value	: token,
+				token	: token,
 				key		: secretKey,
 			} ).verify()
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -147,7 +147,7 @@ describe( 'Jwt.verify() - none', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'none' },
 		} )
 
@@ -168,7 +168,7 @@ describe( 'Jwt.verify() - HMAC', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			header	: { alg: 'HS1' },
 		} )
@@ -184,7 +184,7 @@ describe( 'Jwt.verify() - HMAC', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 		} )
 
@@ -200,7 +200,7 @@ describe( 'Jwt.verify() - HMAC', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			header	: { alg: 'HS384' },
 		} )
@@ -217,7 +217,7 @@ describe( 'Jwt.verify() - HMAC', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			key		: secretKey,
 			header	: { alg: 'HS512' },
 		} )
@@ -249,7 +249,7 @@ describe( 'Jwt.verify() - DSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'DS1' },
 			key		: keypair.publicKey,
 		} )
@@ -269,7 +269,7 @@ describe( 'Jwt.verify() - DSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'DS256' },
 			key		: keypair.publicKey,
 		} )
@@ -289,7 +289,7 @@ describe( 'Jwt.verify() - DSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'DS384' },
 			key		: keypair.publicKey,
 		} )
@@ -309,7 +309,7 @@ describe( 'Jwt.verify() - DSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'DS512' },
 			key		: keypair.publicKey,
 		} )
@@ -341,7 +341,7 @@ describe( 'Jwt.verify() - EcDSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'ES256' },
 			key		: keypair.publicKey,
 		} )
@@ -367,7 +367,7 @@ describe( 'Jwt.verify() - EcDSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'ES384' },
 			key		: keypair.publicKey,
 		} )
@@ -393,7 +393,7 @@ describe( 'Jwt.verify() - EcDSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'ES512' },
 			key		: keypair.publicKey,
 		} )
@@ -424,7 +424,7 @@ describe( 'Jwt.verify() - EdDSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'EdDSA' },
 			key		: keypair.publicKey,
 		} )
@@ -449,7 +449,7 @@ describe( 'Jwt.verify() - EdDSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'EdDSA' },
 			key		: keypair.publicKey,
 		} )
@@ -482,7 +482,7 @@ describe( 'Jwt.verify() - RSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'RS1' },
 			key		: keypair.publicKey,
 		} )
@@ -502,7 +502,7 @@ describe( 'Jwt.verify() - RSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'RS256' },
 			key		: keypair.publicKey,
 		} )
@@ -522,7 +522,7 @@ describe( 'Jwt.verify() - RSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'RS384' },
 			key		: keypair.publicKey,
 		} )
@@ -542,7 +542,7 @@ describe( 'Jwt.verify() - RSA', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'RS512' },
 			key		: keypair.publicKey,
 		} )
@@ -581,7 +581,7 @@ describe( 'Jwt.verify() - RSASSA-PSS', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'PS256' },
 			key		: keypair.publicKey,
 		} )
@@ -612,7 +612,7 @@ describe( 'Jwt.verify() - RSASSA-PSS', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'PS384' },
 			key		: keypair.publicKey,
 		} )
@@ -643,7 +643,7 @@ describe( 'Jwt.verify() - RSASSA-PSS', () => {
 		} ).sign()
 
 		const jwt = new Jwt( {
-			value	: token,
+			token	: token,
 			header	: { alg: 'PS512' },
 			key		: keypair.publicKey,
 		} )

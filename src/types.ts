@@ -74,7 +74,7 @@ namespace JsonWebToken
 	 * The actual JWS payload with additional data.
 	 * 
 	 */
-	export type Payload<T> = T extends string ? { data: string } & JwsPayload : T & JwsPayload
+	export type Payload<T> = T extends string | number | boolean | Array<unknown> ? { data: T } & JwsPayload : T & JwsPayload
 
 
 	/**
@@ -94,14 +94,14 @@ namespace JsonWebToken
 		nbf?: string | number | Date
 	} & ( {
 		/** The token value. */
-		value: string
+		token: string
 		data?: never
 		/** The token secret key used for HMAC or the PEM public key for RSA, ECDSA and RSASSA-PSS sign verification algorithms. */
 		key?: Sign.PublicKey
 	} | {
 		/** The Payload data to sign into the token. Could be anything. */
 		data: T
-		value?: never
+		token?: never
 		/** The token secret key used for HMAC or the PEM private key for RSA, ECDSA and RSASSA-PSS signing algorithms. */
 		key?: Sign.PrivateKey
 	} ) & Pick<JsonWebToken.JwsPayload, 'jti' | 'iss' | 'sub' | 'aud'>
