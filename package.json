@@ -74,7 +74,7 @@
 	"dependencies": {
 		"@alessiofrittoli/crypto-encoder": "^1.1.0",
 		"@alessiofrittoli/crypto-signature": "^1.1.0",
-		"@alessiofrittoli/exception": "^0.1.0",
+		"@alessiofrittoli/exception": "^1.0.0",
 		"@alessiofrittoli/type-utils": "^1.0.0"
 	}
 }

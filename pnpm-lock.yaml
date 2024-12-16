@@ -15,8 +15,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@alessiofrittoli/exception':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^1.0.0
+        version: 1.0.0
       '@alessiofrittoli/type-utils':
         specifier: ^1.0.0
         version: 1.0.0
@@ -81,8 +81,8 @@ packages:
   '@alessiofrittoli/crypto-signature@1.1.0':
     resolution: {integrity: sha512-e9mZGFDE4O/HX55O9P9ev32ttk35ix2L4agPhWI5oxg7XkkbZuOeJ4JPm8NShyPx7NvbCRaSTNf7C63lXLWepQ==}
 
-  '@alessiofrittoli/exception@0.1.0':
-    resolution: {integrity: sha512-w9fOxjscIlIBQHjaj4zjE0WD9ll1u1+wM7jeSTG6TFn/iFMeC8XZgGZjLrtW17EiAUCpPsUCc+e4jsNS/dt2hA==}
+  '@alessiofrittoli/exception@1.0.0':
+    resolution: {integrity: sha512-G6KjoID5eiD7t8BOC8YzHkBupumnVoWrwErDo0YRQYYoknk7I95w2Nktu/Rn8xc7Si01GMH4SIY8i2e98NfxwQ==}
 
   '@alessiofrittoli/type-utils@0.3.2':
     resolution: {integrity: sha512-VbrmEWFueHfSYRBvzu6WjrzH9pyqt8QNxNQ52Pc8LxyWWX8RUWK6xhfrF3HHUw27b+d2FqHNk5HVf3pHVC1ZPg==}
@@ -2292,7 +2292,7 @@ snapshots:
       '@alessiofrittoli/crypto-buffer': 2.0.1
       '@alessiofrittoli/crypto-key': 1.0.0
 
-  '@alessiofrittoli/exception@0.1.0': {}
+  '@alessiofrittoli/exception@1.0.0': {}
 
   '@alessiofrittoli/type-utils@0.3.2': {}
 
