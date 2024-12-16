@@ -33,7 +33,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	aud
 
 	name
-	value
+	token
 	key
 
 	iat
@@ -52,7 +52,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 	constructor( props: JsonWebToken.Props<T> )
 	{
-		this.value		= props.value
+		this.token		= props.token
 		this.name		= props.name || 'JWT'
 		this.key		= props.key
 		this.data		= props.data
@@ -65,10 +65,6 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 		this.iat	= props.iat ? new Date( props.iat ) : undefined
 		this.exp	= props.exp ? new Date( props.exp ) : undefined
 		this.nbf	= props.nbf ? new Date( props.nbf ) : undefined
-
-		if ( this.iat ) this.iat.setMilliseconds( 0 )
-		if ( this.exp ) this.exp.setMilliseconds( 0 )
-		if ( this.nbf ) this.nbf.setMilliseconds( 0 )
 
 		this.header		= this.parseHeader( props.header )
 		this.payload	= this.parsePayload()
@@ -84,12 +80,27 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	 */
 	sign()
 	{
-		const header	= Base64.encode( JSON.stringify( this.header ), true )
-		const payload	= Base64.encode( JSON.stringify( this.payload ), true )
-		const signature	= this.createSignature( header, payload )
-		this.value		= [ header, payload, signature ].filter( Boolean ).join( '.' )
+		if ( ! this.payload ) {
+			throw new Exception( `No ${ this.name } payload provided.`, {
+				code: ErrorCode.EMPTY_VALUE,
+			} )
+		}
+		try {
+			const header	= Base64.encode( JSON.stringify( this.header ), true )
+			const payload	= Base64.encode( JSON.stringify( this.payload ), true )
+			const signature	= this.createSignature( header, payload )
+			this.token		= [ header, payload, signature ].filter( Boolean ).join( '.' )
 
-		return this.value
+			return this.token
+		} catch ( error ) {
+			if ( Exception.isException( error ) ) {
+				throw error
+			}
+			throw new Exception( `Unknown error while signing ${ this.name }.`, {
+				code	: ErrorCode.UNKNOWN,
+				cause	: error,
+			} )
+		}
 	}
 
 
@@ -100,13 +111,13 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	 */
 	verify()
 	{
-		if ( ! this.value ) {
+		if ( ! this.token ) {
 			throw new Exception( `No ${ this.name } value to verify has been provided.`, {
 				code: ErrorCode.EMPTY_VALUE,
 			} )
 		}
 
-		const jwtParts	= this.value.split( '.' )
+		const jwtParts	= this.token.split( '.' )
 
 		if ( jwtParts.length < 2 ) {
 			throw new Exception( `Invalid ${ this.name } token format provided. It should be composed by 2 parts at least.`, {
@@ -159,7 +170,6 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 				throw err
 			}
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				...err as Error,
 				cause	: err,
 				code	: ErrorCode.WRONG_HEADER,
 			} )
@@ -271,8 +281,9 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			return this.isVerified
 		} catch ( err ) {
 
+			this.isVerified = false
+			
 			throw new Exception( `Invalid ${ this.name } signature.`, {
-				...err as Error,
 				cause	: err,
 				code	: ErrorCode.INVALID_SIGN,
 			} )
@@ -283,7 +294,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 	private parseHeader( header?: JsonWebToken.Props<T>[ 'header' ] ): JsonWebToken.Header
 	{
-		const jwtParts	= this.value?.split( '.' ) || []
+		const jwtParts	= this.token?.split( '.' ) || []
 		const jwtHeader	= jwtParts.at( 0 )
 
 		header ||= {}
@@ -291,7 +302,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			typ: 'JWT', ...header, alg: this.algorithm
 		}
 		this.expectedHeader = parsed
-		if ( ! this.value || ! jwtHeader ) {
+		if ( ! this.token || ! jwtHeader ) {
 			return parsed
 		}
 
@@ -299,7 +310,6 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			return JSON.parse<JsonWebToken.Header>( Base64.decode( jwtHeader ).toString() )
 		} catch ( err ) {
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				...err as Error,
 				cause	: err,
 				code	: ErrorCode.WRONG_HEADER,
 			} )
@@ -309,13 +319,18 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 	private parsePayload()
 	{
-		if ( this.data ) {
-			const now = new Date()
-			now.setMilliseconds( 0 )
+		if ( this.data != null ) {
+
+			this.iat ||= new Date()
+			this.iat.setMilliseconds( 0 )
+			if ( this.exp ) this.exp.setMilliseconds( 0 )
+			if ( this.nbf ) this.nbf.setMilliseconds( 0 )
+
+			const flatten = typeof this.data === 'object' && ! Array.isArray( this.data )
 
 			return {
-				...( typeof this.data === 'string' ? { data: this.data } : this.data ),
-				iat: this.iat ? this.dateToSec( this.iat ) : this.dateToSec( now ),
+				...( ! flatten ? { data: this.data } : this.data ),
+				iat: this.dateToSec( this.iat ),
 				exp: this.exp ? this.dateToSec( this.exp ) : undefined,
 				nbf: this.nbf ? this.dateToSec( this.nbf ) : undefined,
 				iss: this.iss,
@@ -325,11 +340,11 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			} as JsonWebToken.Payload<T>
 		}
 
-		if ( this.value ) {
+		if ( this.token ) {
 			try {
 
 				/** The token has been already created and need to be verified. */
-				const jwtParts	= this.value.split( '.' )
+				const jwtParts	= this.token.split( '.' )
 				const payload	= JSON.parse<JsonWebToken.Payload<T>>( Base64.decode( jwtParts.at( 1 ) || '' ).toString() )
 
 				if ( payload.iat ) {
@@ -348,7 +363,6 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 			} catch ( err ) {
 				throw new Exception( `Invalid ${ this.name } Payload.`, {
-					...err as Error,
 					cause	: err,
 					code	: ErrorCode.WRONG_JWS,
 				} )
@@ -361,9 +375,9 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 	private parseSignature(): Buffer | null
 	{
-		if ( ! this.value ) return null
+		if ( ! this.token ) return null
 
-		const jwtParts	= this.value.split( '.' )
+		const jwtParts	= this.token.split( '.' )
 		const signature	= jwtParts.at( 2 )
 		if ( ! signature ) return null
 
