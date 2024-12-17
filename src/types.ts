@@ -86,7 +86,7 @@ namespace JsonWebToken
 		name?: string
 		/** The JOSE Header. */
 		header?: Partial<Omit<JsonWebToken.Header, 'typ'>>
-		/** The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT it has been issued. */
+		/** The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT has been issued. */
 		iat?: string | number | Date
 		/** The token expiration Date time value in milliseconds past unix epoch, a Date string or a Date instance on and after which the JWT it's not accepted for processing. */
 		exp?: string | number | Date
@@ -96,13 +96,13 @@ namespace JsonWebToken
 		/** The token value. */
 		token: string
 		data?: never
-		/** The token secret key used for HMAC or the PEM public key for RSA, ECDSA and RSASSA-PSS sign verification algorithms. */
+		/** The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms.  */
 		key?: Sign.PublicKey
 	} | {
 		/** The Payload data to sign into the token. Could be anything. */
 		data: T
 		token?: never
-		/** The token secret key used for HMAC or the PEM private key for RSA, ECDSA and RSASSA-PSS signing algorithms. */
+		/** The token secret key used for HMAC or the PEM private key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA signing algorithms. */
 		key?: Sign.PrivateKey
 	} ) & Pick<JsonWebToken.JwsPayload, 'jti' | 'iss' | 'sub' | 'aud'>
 }
