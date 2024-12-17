@@ -165,13 +165,13 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			}
 			
 			return parsed
-		} catch ( err ) {
-			if ( Exception.isException( err ) ) {
-				throw err
+		} catch ( error ) {
+			if ( Exception.isException( error ) ) {
+				throw error
 			}
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				cause	: err,
 				code	: ErrorCode.WRONG_HEADER,
+				cause	: error,
 			} )
 		}
 	}
@@ -279,13 +279,17 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			)
 	
 			return this.isVerified
-		} catch ( err ) {
+		} catch ( error ) {
 
 			this.isVerified = false
+
+			if ( Exception.isException( error ) ) {
+				throw error
+			}
 			
 			throw new Exception( `Invalid ${ this.name } signature.`, {
-				cause	: err,
 				code	: ErrorCode.INVALID_SIGN,
+				cause	: error,
 			} )
 
 		}
@@ -308,10 +312,10 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 		try {
 			return JSON.parse<JsonWebToken.Header>( Base64.decode( jwtHeader ).toString() )
-		} catch ( err ) {
+		} catch ( error ) {
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				cause	: err,
 				code	: ErrorCode.WRONG_HEADER,
+				cause	: error,
 			} )
 		}
 	}
@@ -361,10 +365,10 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 				return this.payload
 
-			} catch ( err ) {
+			} catch ( error ) {
 				throw new Exception( `Invalid ${ this.name } Payload.`, {
-					cause	: err,
 					code	: ErrorCode.WRONG_JWS,
+					cause	: error,
 				} )
 			}
 		}
