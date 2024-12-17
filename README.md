@@ -15,7 +15,7 @@ JSON Web Tokens should be only used to store reference data (e.g. user ID). The 
 ### Table of Contents
 
 - [Getting started](#getting-started)
-- [Supported Algrithms](#supported-algorithms)
+- [Supported Algorithms](#supported-algorithms)
 - [Jwt Class API Reference](#jwt-class-api-reference)
 	- [Constructor](#constructor)
 	- [Properties](#properties)
@@ -55,42 +55,42 @@ If no algorithm is specified, `HS256` is being used.
 
 ⚠️ Keep in mind that:
 
-- you will need different key types based on the signing algorithm to use.
+- you will need different key types based on the signing algorithm being used.
 - usage of symmetric keys is insecure. Using asymmetric keys is recommended.
 
 <details>
 
 <summary>Supported algorithms</summary>
 
-| Type         | JWK name | Description                                                           |
-|--------------|----------|-----------------------------------------------------------------------|
-| `none`       |          | No signing process is performed.                                      |
-| `HMAC`       |          |                                                                       |
-|              | `HS1`    | Token signed generated/verified with `HMAC` key and `SHA-1`.          |
-|              | `HS256`  | Token signed generated/verified with `HMAC` key and `SHA-256`.        |
-|              | `HS384`  | Token signed generated/verified with `HMAC` key and `SHA-384`.        |
-|              | `HS512`  | Token signed generated/verified with `HMAC` key and `SHA-512`.        |
-| `DSA`        |          |                                                                       |
-|              | `DS1`    | Token signed generated/verified with `DSA` keys and `SHA-1`.          |
-|              | `DS256`  | Token signed generated/verified with `DSA` keys and `SHA-256`.        |
-|              | `DS384`  | Token signed generated/verified with `DSA` keys and `SHA-384`.        |
-|              | `DS512`  | Token signed generated/verified with `DSA` keys and `SHA-512`.        |
-| `EcDSA`      |          |                                                                       |
-|              | `ES256`  | Token signed generated/verified with `EC` keys and `SHA-256`.         |
-|              | `ES384`  | Token signed generated/verified with `EC` keys and `SHA-384`.         |
-|              | `ES512`  | Token signed generated/verified with `EC` keys and `SHA-512`.         |
-| `EdDSA`      |          |                                                                       |
-|              | `EdDSA`  | Token signed generated/verified with `ed448` keys.                    |
-|              | `EdDSA`  | Token signed generated/verified with `ed25519` keys.                  |
-| `RSA`        |          |                                                                       |
-|              | `RS1`    | Token signed generated/verified with `RSA` keys and `SHA-1`.          |
-|              | `RS256`  | Token signed generated/verified with `RSA` keys and `SHA-256`.        |
-|              | `RS384`  | Token signed generated/verified with `RSA` keys and `SHA-384`.        |
-|              | `RS512`  | Token signed generated/verified with `RSA` keys and `SHA-512`.        |
-| `RSASSA-PSS` |          |                                                                       |
-|              | `PS256`  | Token signed generated/verified with `RSASSA-PSS` keys and `SHA-256`. |
-|              | `PS384`  | Token signed generated/verified with `RSASSA-PSS` keys and `SHA-384`. |
-|              | `PS512`  | Token signed generated/verified with `RSASSA-PSS` keys and `SHA-512`. |
+| Type         | JWK name | Description                                                              |
+|--------------|----------|--------------------------------------------------------------------------|
+| `none`       |          | No signing process is performed.                                         |
+| `HMAC`       |          |                                                                          |
+|              | `HS1`    | Token signature generated/verified with `HMAC` key and `SHA-1`.          |
+|              | `HS256`  | Token signature generated/verified with `HMAC` key and `SHA-256`.        |
+|              | `HS384`  | Token signature generated/verified with `HMAC` key and `SHA-384`.        |
+|              | `HS512`  | Token signature generated/verified with `HMAC` key and `SHA-512`.        |
+| `DSA`        |          |                                                                          |
+|              | `DS1`    | Token signature generated/verified with `DSA` keys and `SHA-1`.          |
+|              | `DS256`  | Token signature generated/verified with `DSA` keys and `SHA-256`.        |
+|              | `DS384`  | Token signature generated/verified with `DSA` keys and `SHA-384`.        |
+|              | `DS512`  | Token signature generated/verified with `DSA` keys and `SHA-512`.        |
+| `EcDSA`      |          |                                                                          |
+|              | `ES256`  | Token signature generated/verified with `EC` keys and `SHA-256`.         |
+|              | `ES384`  | Token signature generated/verified with `EC` keys and `SHA-384`.         |
+|              | `ES512`  | Token signature generated/verified with `EC` keys and `SHA-512`.         |
+| `EdDSA`      |          |                                                                          |
+|              | `EdDSA`  | Token signature generated/verified with `ed448` keys.                    |
+|              | `EdDSA`  | Token signature generated/verified with `ed25519` keys.                  |
+| `RSA`        |          |                                                                          |
+|              | `RS1`    | Token signature generated/verified with `RSA` keys and `SHA-1`.          |
+|              | `RS256`  | Token signature generated/verified with `RSA` keys and `SHA-256`.        |
+|              | `RS384`  | Token signature generated/verified with `RSA` keys and `SHA-384`.        |
+|              | `RS512`  | Token signature generated/verified with `RSA` keys and `SHA-512`.        |
+| `RSASSA-PSS` |          |                                                                          |
+|              | `PS256`  | Token signature generated/verified with `RSASSA-PSS` keys and `SHA-256`. |
+|              | `PS384`  | Token signature generated/verified with `RSASSA-PSS` keys and `SHA-384`. |
+|              | `PS512`  | Token signature generated/verified with `RSASSA-PSS` keys and `SHA-512`. |
 
 </details>
 
@@ -108,26 +108,26 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 
 | Property | Type   | Default | Description |
 |----------|--------|---------|-------------|
-| `name` | `string` | `"JWT"` | The token name. This is used in error messages and intended for debugging purposes only. |
+| `name` | `string` | `"JWT"` | (Optional) The token name. This is used in error messages and is intended for debugging purposes only. |
 | `header` | `JsonWebToken.Header` | - | (Optional) The JOSE Header. |
 |          |        |         |             |
 | `header.alg` | `JsonWebToken.Algorithm` | `HS256` | Message authentication code algorithm. |
-| `header.cty` | `string` | - | Content type - If nested signing or encryption is employed, it is recommended to set this to JWT; otherwise, omit this field. |
-| `header.kid`  | `string` | - | Key ID - A hint indicating which key the client used to generate the token signature. The server will match this value to a key on file in order to verify that the signature is valid and the token is authentic. |
-| `header.crit` | `string[]` | - | Critical - A list of headers that must be understood by the server in order to accept the token as valid. |
+| `header.cty` | `string` | - | (Optional) Content type - If nested signing or encryption is employed, it is recommended to set this to JWT; otherwise, omit this field. |
+| `header.kid`  | `string` | - | (Optional) Key ID - A hint indicating which key the client used to generate the token signature. The server will match this value to a key on file in order to verify that the signature is valid and the token is authentic. |
+| `header.crit` | `string[]` | - | (Optional) Critical - A list of headers that must be understood by the server in order to accept the token as valid. |
 | `header.x5c` | `string \| string[]` | - | ⚠️ x.509 Certificate Chain - A certificate chain in RFC4945 format corresponding to the private key used to generate the token signature. The server will use this information to verify that the signature is valid and the token is authentic. - not supported yet. |
-| `header.x5u` | `string \| string[]` | - | ⚠️ xx.509 Certificate Chain URL - A URL where the server can retrieve a certificate chain corresponding to the private key used to generate the token signature. The server will retrieve and use this information to verify that the signature is authentic. - not supported yet. |
+| `header.x5u` | `string \| string[]` | - | ⚠️ x.509 Certificate Chain URL - A URL where the server can retrieve a certificate chain corresponding to the private key used to generate the token signature. The server will retrieve and use this information to verify that the signature is authentic. - not supported yet. |
 | `header.x5t` | `string` | - | - |
 | `header.jku` | `string` | - | - |
 | `header['x5t#S256']` | `string` | - | - |
 |          |        |         |             |
-| `iat` | `string \| numbet \| Date` | current timestamp | (Optional) The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT it has been issued. |
+| `iat` | `string \| numbet \| Date` | current timestamp | (Optional) The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT has been issued. |
 | `exp` | `string \| numbet \| Date` | - | (Optional) The token expiration Date time value in milliseconds past unix epoch, a Date string or a Date instance on and after which the JWT it's not accepted for processing. |
 | `nbf` | `string \| numbet \| Date` | - | (Optional) The token Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT will start to be accepted for processing. |
-| `jti` | `string` | - | JWT ID - Case-sensitive unique identifier of the token even among different issuers. |
-| `iss` | `string` | - | Issuer - Identifies principal that issued the JWT. |
-| `sub` | `string` | - | Subject - Identifies the subject of the JWT. |
-| `aud` | `string` | - | Audience - Identifies the recipients that the JWT is intended for. Each principal intended to process the JWT must identify itself with a value in the audience claim. |
+| `jti` | `string` | - | (Optional) JWT ID - Case-sensitive unique identifier of the token even among different issuers. |
+| `iss` | `string` | - | (Optional) Issuer - Identifies principal that issued the JWT. |
+| `sub` | `string` | - | (Optional) Subject - Identifies the subject of the JWT. |
+| `aud` | `string` | - | (Optional) Audience - Identifies the recipients that the JWT is intended for. Each principal intended to process the JWT must identify itself with a value in the audience claim. |
 
 </details>
 
@@ -140,7 +140,7 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 | Property | Type | Description                                                 |
 |----------|------|-------------------------------------------------------------|
 | `data`   | `T`  | The Payload data to sign into the token. Could be any non nullable value. |
-| `key`    | `Sign.PrivateKey` | The token secret key used for HMAC or the PEM private key for RSA, ECDSA and RSASSA-PSS signing algorithms. |
+| `key`    | `Sign.PrivateKey` | The token secret key used for HMAC or the PEM private key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA signing algorithms. |
 
 </details>
 
@@ -153,7 +153,7 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 | Property | Type     | Description       |
 |----------|----------|-------------------|
 | `token`  | `string` | The token string. |
-| `key`    | `Sign.PublicKey` | The token secret key used for HMAC or the PEM public key for RSA, ECDSA and RSASSA-PSS sign verification algorithms. |
+| `key`    | `Sign.PublicKey` | The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms.  |
 
 </details>
 
@@ -367,9 +367,9 @@ Elliptic curve based JSON Web Signatures (JWS) provide integrity, authenticity a
 
 The EC keys should be of sufficient length to match the required level of security. Note that while EC signatures are shorter than an RSA signature of equivalent strength, they may take more CPU time to verify.
 
-#### ECDSA using P-256/384/521 and SHA-256/384/512
+#### EcDSA using P-256/384/521 and SHA-256/384/512
 
-To generate a JWT signed with the `ES256`/`ES384`/`ES512` algorithm and ECDSA keys you need to generate an asymmetric keys as follow:
+To generate a JWT signed with the `ES256`/`ES384`/`ES512` algorithm and EcDSA keys you need to generate an asymmetric keys as follow:
 
 - Generate a keypair:
 

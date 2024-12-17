@@ -395,7 +395,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	 * @param header	The base64url JOSE Header string.
 	 * @param payload	The base64url JWS Payload string.
 	 * 
-	 * @returns	The HMAC/RSASSA/RSASSA-PSS/ECDSA base64url encoded signature.
+	 * @returns	The HMAC/RSASSA/RSASSA-PSS/EcDSA base64url encoded signature.
 	 */
 	private createSignature( header: string, payload: string )
 	{
