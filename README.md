@@ -25,7 +25,6 @@ JSON Web Tokens should be only used to store reference data (e.g. user ID). The 
 	- [Not before](#not-before)
 	- [Type casting](#type-casting)
 - [Error handling](#error-handling)
-- [Contributing](#contributing)
 - [Security](#security)
 - [Credits](#made-with-)
 
@@ -876,14 +875,24 @@ pnpm test:jest
 pnpm test:jest:jsdom
 ```
 
---- -->
+Run tests with coverage.
+
+An HTTP server is then started to serve coverage files from `./coverage` folder.
+
+⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
+
+```bash
+pnpm test:coverage
+```
+
+---
 
 ### Contributing
 
 Contributions are truly welcome!\
 Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
 
----
+--- -->
 
 ### Security
 
