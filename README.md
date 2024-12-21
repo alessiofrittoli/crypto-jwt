@@ -1,6 +1,6 @@
 # Crypto JSON Web Token 🔗
 
-Version 1.1.0
+Version 1.2.0
 
 ## Lightweight TypeScript JSON Web Tokens library
 
