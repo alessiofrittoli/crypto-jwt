@@ -802,16 +802,16 @@ The `ErrorCode` enumerator can be used to handle different errors with ease.
 
 ```ts
 import Exception from '@alessiofrittoli/exception'
-import { ErrorCode } from '@alessiofrittoli/crypto-jwt/error'
+import ErrorCode from '@alessiofrittoli/crypto-jwt/error'
 
 try {
 	new Jwt( {
 		token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.invalid'
-	} ) // will throw error with code: ErrorCode.WRONG_HEADER
+	} ) // will throw error with code: ErrorCode.Jwt.WRONG_JWS
 } catch ( error ) {
-	if ( Exception.isException( error ) ) {
+	if ( Exception.isException<string, ErrorCode>( error ) ) {
 		switch ( error.code ) {
-			case ErrorCode.WRONG_JWS:
+			case ErrorCode.Jwt.WRONG_JWS:
 				// malformed JWT payload
 				break
 			// ... other cases here
