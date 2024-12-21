@@ -4,7 +4,7 @@ import type Sign from '@alessiofrittoli/crypto-signature/types'
 import Exception from '@alessiofrittoli/exception'
 
 import type JsonWebToken from './types'
-import { ErrorCode } from './error'
+import ErrorCode from './error'
 
 
 /**
@@ -82,7 +82,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	{
 		if ( ! this.payload ) {
 			throw new Exception( `No ${ this.name } payload provided.`, {
-				code: ErrorCode.EMPTY_VALUE,
+				code: ErrorCode.Exception.EMPTY_VALUE,
 			} )
 		}
 		try {
@@ -97,7 +97,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 				throw error
 			}
 			throw new Exception( `Unknown error while signing ${ this.name }.`, {
-				code	: ErrorCode.UNKNOWN,
+				code	: ErrorCode.Exception.UNKNOWN,
 				cause	: error,
 			} )
 		}
@@ -113,7 +113,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	{
 		if ( ! this.token ) {
 			throw new Exception( `No ${ this.name } value to verify has been provided.`, {
-				code: ErrorCode.EMPTY_VALUE,
+				code: ErrorCode.Exception.EMPTY_VALUE,
 			} )
 		}
 
@@ -121,7 +121,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 		if ( jwtParts.length < 2 ) {
 			throw new Exception( `Invalid ${ this.name } token format provided. It should be composed by 2 parts at least.`, {
-				code: ErrorCode.WRONG_FORMAT,
+				code: ErrorCode.Jwt.WRONG_FORMAT,
 			} )
 		}
 
@@ -146,7 +146,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	{
 		if ( ! header ) {
 			throw new Exception( `No ${ this.name } JOSE Header has been provided.`, {
-				code: ErrorCode.NO_HEADER,
+				code: ErrorCode.Jwt.NO_HEADER,
 			} )
 		}
 
@@ -155,12 +155,12 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 			if ( parsed.alg !== this.expectedHeader.alg ) {
 				throw new Exception( `The ${ this.name } JOSE Header algorithm is not the expected algorithm.`, {
-					code: ErrorCode.WRONG_ALGO,
+					code: ErrorCode.Jwt.WRONG_ALGO,
 				} )
 			}
 			if ( parsed.kid !== this.expectedHeader.kid ) {
 				throw new Exception( `The ${ this.name } JOSE Header \`kid\` is not the expected \`kid\`.`, {
-					code: ErrorCode.WRONG_KID,
+					code: ErrorCode.Jwt.WRONG_KID,
 				} )
 			}
 			
@@ -170,7 +170,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 				throw error
 			}
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				code	: ErrorCode.WRONG_HEADER,
+				code	: ErrorCode.Jwt.WRONG_HEADER,
 				cause	: error,
 			} )
 		}
@@ -189,20 +189,20 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 		if ( this.payload.exp && this.payload.exp <= ( now.getTime() / 1000 ) ) {
 			throw new Exception( `The ${ this.name } is expired and no longer accepted.`, {
-				code: ErrorCode.EXPIRED,
+				code: ErrorCode.Exception.EXPIRED,
 			} )
 		}
 		
 		if ( this.payload.nbf && this.payload.nbf >= ( now.getTime() / 1000 ) ) {
 			throw new Exception( `The ${ this.name } is not yet in charge and it cannot be processed.`, {
-				code: ErrorCode.TOO_EARLY,
+				code: ErrorCode.Exception.TOO_EARLY,
 			} )
 		}
 
 
 		if ( this.iss !== this.payload.iss ) {
 			throw new Exception( `Unknown ${ this.name } Issuer.`, {
-				code: ErrorCode.UNEXPECTED_ISSUER,
+				code: ErrorCode.Jwt.UNEXPECTED_ISSUER,
 			} )
 		}
 
@@ -220,13 +220,13 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			 * Server has defined an audience but parsed payload has defined a different audience.
 			 */
 			throw new Exception( `The given ${ this.name } is intended for a different audience.`, {
-				code: ErrorCode.UNEXPECTED_AUDIENCE,
+				code: ErrorCode.Jwt.UNEXPECTED_AUDIENCE,
 			} )
 		}
 
 		if ( this.jti !== this.payload.jti ) {
 			throw new Exception( `The given ${ this.name } ID is invalid.`, {
-				code: ErrorCode.UNEXPECTED_JTI,
+				code: ErrorCode.Jwt.UNEXPECTED_JTI,
 			} )
 		}
 
@@ -248,7 +248,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	{
 		if ( this.algorithm === 'none' && !! signature ) {
 			throw new Exception( `Unexpected signature provided for the ${ this.name }.`, {
-				code: ErrorCode.UNEXPECTED_SIGN,
+				code: ErrorCode.Jwt.UNEXPECTED_SIGN,
 			} )
 		}
 		
@@ -259,13 +259,13 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 		if ( ! signature ) {
 			throw new Exception( `No signature provided for the ${ this.name }.`, {
-				code: ErrorCode.NO_SIGN,
+				code: ErrorCode.Signature.NO_SIGN,
 			} )
 		}
 
 		if ( ! this.key ) {
 			throw new Exception( `No public key provided for the ${ this.name } sign verification.`, {
-				code: ErrorCode.NO_PUBLICKEY,
+				code: ErrorCode.Signature.NO_PUBLICKEY,
 			} )
 		}
 
@@ -288,7 +288,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			}
 			
 			throw new Exception( `Invalid ${ this.name } signature.`, {
-				code	: ErrorCode.INVALID_SIGN,
+				code	: ErrorCode.Signature.INVALID_SIGN,
 				cause	: error,
 			} )
 
@@ -314,7 +314,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 			return JSON.parse<JsonWebToken.Header>( Base64.decode( jwtHeader ).toString() )
 		} catch ( error ) {
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				code	: ErrorCode.WRONG_HEADER,
+				code	: ErrorCode.Jwt.WRONG_HEADER,
 				cause	: error,
 			} )
 		}
@@ -367,7 +367,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 
 			} catch ( error ) {
 				throw new Exception( `Invalid ${ this.name } Payload.`, {
-					code	: ErrorCode.WRONG_JWS,
+					code	: ErrorCode.Jwt.WRONG_JWS,
 					cause	: error,
 				} )
 			}
@@ -407,7 +407,7 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 		
 		if ( ! this.key ) {
 			throw new Exception( `No private key provided for the ${ this.name } sign creation.`, {
-				code: ErrorCode.NO_PRIVATEKEY,
+				code: ErrorCode.Signature.NO_PRIVATEKEY,
 			} )
 		}
 
