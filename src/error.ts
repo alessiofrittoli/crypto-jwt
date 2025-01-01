@@ -1,4 +1,4 @@
-import SignatureErrorCode from '@alessiofrittoli/crypto-signature/error'
+import { ErrorCode as SignatureErrorCode } from '@alessiofrittoli/crypto-signature/error'
 
 enum Jwt
 {
@@ -14,7 +14,5 @@ enum Jwt
 	UNEXPECTED_SIGN		= 'ERR:UNEXPECTEDSIGN',
 }
 
-const ErrorCode	= { ...SignatureErrorCode, Jwt }
-type ErrorCode	= MergedEnumValue<typeof ErrorCode>
-
-export default ErrorCode
+export const ErrorCode	= { ...SignatureErrorCode, Jwt }
+export type ErrorCode	= MergedEnumValue<typeof ErrorCode>

@@ -1,4 +1,4 @@
-import type Sign from '@alessiofrittoli/crypto-signature/types'
+import type { Sign } from '@alessiofrittoli/crypto-signature/types'
 
 namespace JsonWebToken
 {

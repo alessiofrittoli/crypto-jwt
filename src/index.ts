@@ -1,10 +1,10 @@
 import { Base64 } from '@alessiofrittoli/crypto-encoder'
-import Signature from '@alessiofrittoli/crypto-signature'
-import type Sign from '@alessiofrittoli/crypto-signature/types'
-import Exception from '@alessiofrittoli/exception'
+import { Signature } from '@alessiofrittoli/crypto-signature'
+import type { Sign } from '@alessiofrittoli/crypto-signature/types'
+import { Exception } from '@alessiofrittoli/exception'
 
 import type JsonWebToken from './types'
-import ErrorCode from './error'
+import { ErrorCode } from './error'
 
 
 /**
