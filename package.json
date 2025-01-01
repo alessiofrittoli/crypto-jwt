@@ -64,8 +64,7 @@
 		"test:coverage:jsdom:serve": "JSDOM=true pnpm test:coverage:serve",
 		"test:jest": "pnpm test:watch jest.test.ts",
 		"test:jest:jsdom": "JSDOM=true pnpm test:jest",
-		"test:sign": "pnpm test sign.test.ts",
-		"test:verify": "pnpm test verify.test.ts"
+		"test:jwt": "pnpm test jwt.test.ts"
 	},
 	"devDependencies": {
 		"@alessiofrittoli/node-scripts": "^2.2.1",
