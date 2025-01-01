@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import Jwt from '@/index'
+import { Jwt } from '@/index'
 
 const secretKey = crypto.createSecretKey( Buffer.from( 'mysecretkey' ) )
 
