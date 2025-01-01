@@ -50,7 +50,7 @@
 		"build": "pnpm lint && pnpm test:ci && tsup",
 		"build:watch": "tsup --watch",
 		"lint": "eslint",
-		"release": "node scripts/publish.js --verbose",
+		"release": "node scripts/publish.js --verbose --npm",
 		"test": "pnpm test:watch",
 		"test:watch": "jest --watchAll --verbose",
 		"test:jsdom": "JSDOM=true pnpm test:watch",
@@ -68,6 +68,7 @@
 		"test:verify": "pnpm test verify.test.ts"
 	},
 	"devDependencies": {
+		"@alessiofrittoli/node-scripts": "^2.2.1",
 		"@eslint/js": "^9.17.0",
 		"@jest/globals": "^29.7.0",
 		"@types/jest": "^29.5.14",
