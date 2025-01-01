@@ -272,7 +272,7 @@ Be mindful when using a shared key; it can open potential vulnerabilities if the
 
 ```ts
 import crypto from 'crypto'
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const secretKey = crypto.createSecretKey( Buffer.from( 'mysecretkey' ) )
 
@@ -325,7 +325,7 @@ const keypair = crypto.generateKeyPairSync( 'dsa', {
 - Parse and sign a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const jwt = new Jwt( {
 	data	: 'Data to be signed into the token.',
@@ -340,7 +340,7 @@ const signedJwt = jwt.sign()
 - Parse and verify a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const jwt = new Jwt( {
 	token	: signedJwt,
@@ -397,7 +397,7 @@ const es512keypair = crypto.generateKeyPairSync( 'ec', {
 - Parse and sign a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const es256Token = new Jwt( {
 	data	: 'Data to be signed into the token.',
@@ -421,7 +421,7 @@ const es512Token = new Jwt( {
 - Parse and verify a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const es256Valid = new Jwt( {
 	token	: es256Token,
@@ -469,7 +469,7 @@ const ed25519keypair = crypto.generateKeyPairSync( 'ed25519', {
 - Parse and sign a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const ed448Token = new Jwt( {
 	data	: 'Data to be signed into the token.',
@@ -487,7 +487,7 @@ const ed25519Token = new Jwt( {
 - Parse and verify a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const ed448Valid = new Jwt( {
 	token	: ed448Token,
@@ -528,7 +528,7 @@ const keypair	= crypto.generateKeyPairSync( 'rsa', {
 - Parse and sign a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const signedJwt = new Jwt( {
 	data	: 'Data to be signed into the token.',
@@ -540,7 +540,7 @@ const signedJwt = new Jwt( {
 - Parse and verify a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const validToken = new Jwt( {
 	token	: signedJwt,
@@ -597,7 +597,7 @@ const rsapss512keypair = crypto.generateKeyPairSync( 'rsa-pss', {
 - Parse and sign a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const rsapss256token = new Jwt( {
 	data	: 'Data to be signed into the token.',
@@ -621,7 +621,7 @@ const rsapss512token = new Jwt( {
 - Parse and verify a token:
 
 ```ts
-import Jwt from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const rsapss256Valid = new Jwt( {
 	token	: rsapss256token,

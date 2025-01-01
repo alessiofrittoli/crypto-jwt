@@ -1,6 +1,6 @@
-import type Sign from '@alessiofrittoli/crypto-signature/types'
+import type { Sign } from '@alessiofrittoli/crypto-signature/types'
 
-namespace JsonWebToken
+export namespace JsonWebToken
 {
 	/**
 	 * JWS Signature algorithm parameter.
@@ -106,5 +106,3 @@ namespace JsonWebToken
 		key?: Sign.PrivateKey
 	} ) & Pick<JsonWebToken.JwsPayload, 'jti' | 'iss' | 'sub' | 'aud'>
 }
-
-export default JsonWebToken

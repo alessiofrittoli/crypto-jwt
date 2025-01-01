@@ -1,10 +1,10 @@
 import { Base64 } from '@alessiofrittoli/crypto-encoder'
-import Signature from '@alessiofrittoli/crypto-signature'
-import type Sign from '@alessiofrittoli/crypto-signature/types'
-import Exception from '@alessiofrittoli/exception'
+import { Signature } from '@alessiofrittoli/crypto-signature'
+import type { Sign } from '@alessiofrittoli/crypto-signature/types'
+import { Exception } from '@alessiofrittoli/exception'
 
-import type JsonWebToken from './types'
-import ErrorCode from './error'
+import { ErrorCode } from './error'
+import type { JsonWebToken } from './types'
 
 
 /**
@@ -13,7 +13,7 @@ import ErrorCode from './error'
  * @link [RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518)
  * @link [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)
  */
-class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'data'>
+export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'data'>
 {
 	/**
 	 * The JOSE (JSON Object Signing and Encryption) Header contains the parameters
@@ -424,6 +424,16 @@ class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm' | 'dat
 	{
 		return date.getTime() / 1000
 	}
-}
 
-export default Jwt
+
+	/**
+	 * Converts the current object to a JSON representation.
+	 * 
+	 * @returns The signed token if `data` is present, otherwise the given `token` string.
+	 */
+	toJSON()
+	{
+		if ( this.data ) return this.sign()
+		return this.token
+	}
+}
