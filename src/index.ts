@@ -424,4 +424,16 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	{
 		return date.getTime() / 1000
 	}
+
+
+	/**
+	 * Converts the current object to a JSON representation.
+	 * 
+	 * @returns The signed token if `data` is present, otherwise the given `token` string.
+	 */
+	toJSON()
+	{
+		if ( this.data ) return this.sign()
+		return this.token
+	}
 }
