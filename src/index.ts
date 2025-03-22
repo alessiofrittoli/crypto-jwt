@@ -68,7 +68,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 		this.header		= this.parseHeader( props.header )
 		this.payload	= this.parsePayload()
-		this.signature	= this.parseSignature()
+		this.signature	= this.decodeSignature()
 		this.isVerified	= null
 	}
 
@@ -124,9 +124,9 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 				code: ErrorCode.Jwt.WRONG_FORMAT,
 			} )
 		}
-
+		
 		this.verifyHeader( jwtParts.at( 0 ) )
-		this.verifySignature( jwtParts.at( 0 ) || '', jwtParts.at( 1 ) || '', jwtParts.at( 2 ) )
+		this.verifySignature( jwtParts.at( 0 )!, jwtParts.at( 1 )!, jwtParts.at( 2 ) )
 		this.verifyPayload()
 
 		return true
@@ -283,19 +283,18 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 			this.isVerified = false
 
-			if ( Exception.isException( error ) ) {
-				throw error
-			}
-			
-			throw new Exception( `Invalid ${ this.name } signature.`, {
-				code	: ErrorCode.Signature.INVALID_SIGN,
-				cause	: error,
-			} )
+			throw error
 
 		}
 	}
 
 
+	/**
+	 * Parse or decode the JWT Header.
+	 * 
+	 * @param	header ( Optional ) The JWT Header object for a new JWT Header construction.
+	 * @returns The new constructed JWT Header or a decoded JWT Header if `Jwt.token` is found.
+	 */
 	private parseHeader( header?: JsonWebToken.Props<T>[ 'header' ] ): JsonWebToken.Header
 	{
 		const jwtParts	= this.token?.split( '.' ) || []
@@ -321,6 +320,13 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	}
 
 
+	/**
+	 * Parse or decode the JWT Payload.
+	 * 
+	 * If `Jwt.data` is found, an object with parsed data is returned.
+	 * 
+	 * @returns An object with parsed data from `Jwt.data` if any, or the decoded payload from `Jwt.token`.
+	 */
 	private parsePayload()
 	{
 		if ( this.data != null ) {
@@ -377,13 +383,17 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	}
 
 
-	private parseSignature(): Buffer | null
+	/**
+	 * Decode a Base64 encoded signature.
+	 * 
+	 * @returns The Base64 decoded signature `Buffer` or `null` if no `token` or token `signature` has been found.
+	 */
+	private decodeSignature(): Buffer | null
 	{
 		if ( ! this.token ) return null
 
 		const jwtParts	= this.token.split( '.' )
 		const signature	= jwtParts.at( 2 )
-		if ( ! signature ) return null
 
 		return (
 			! signature
@@ -420,9 +430,15 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	}
 
 
-	private dateToSec( date: Date )
+	/**
+	 * Convert a Date to Date time seconds.
+	 * 
+	 * @param	date The Date string, milliseconds since UNIX Epoch or a Date object to convert.
+	 * @returns	The Date time seconds of the given `date`.
+	 */
+	private dateToSec( date: string | number | Date )
 	{
-		return date.getTime() / 1000
+		return new Date( date ).getTime() / 1000
 	}
 
 
