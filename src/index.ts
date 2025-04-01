@@ -151,7 +151,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 		}
 
 		try {
-			const parsed = JSON.parse<JsonWebToken.Header>( Base64.decode( header ).toString() )
+			const parsed = JSON.parse<JsonWebToken.Header>( Base64.toString( Base64.decode( header ) ) )
 
 			if ( parsed.alg !== this.expectedHeader.alg ) {
 				throw new Exception( `The ${ this.name } JOSE Header algorithm is not the expected algorithm.`, {
@@ -310,7 +310,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 		}
 
 		try {
-			return JSON.parse<JsonWebToken.Header>( Base64.decode( jwtHeader ).toString() )
+			return JSON.parse<JsonWebToken.Header>( Base64.toString( Base64.decode( jwtHeader ) ) )
 		} catch ( error ) {
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
 				code	: ErrorCode.Jwt.WRONG_HEADER,
@@ -355,7 +355,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 				/** The token has been already created and need to be verified. */
 				const jwtParts	= this.token.split( '.' )
-				const payload	= JSON.parse<JsonWebToken.Payload<T>>( Base64.decode( jwtParts.at( 1 ) || '' ).toString() )
+				const payload	= JSON.parse<JsonWebToken.Payload<T>>( Base64.toString( Base64.decode( jwtParts.at( 1 ) || '' ) ) )
 
 				if ( payload.iat ) {
 					this.iat = new Date( payload.iat * 1000 )
