@@ -82,7 +82,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	{
 		if ( ! this.payload ) {
 			throw new Exception( `No ${ this.name } payload provided.`, {
-				code: ErrorCode.Exception.EMPTY_VALUE,
+				code: ErrorCode.EMPTY_VALUE,
 			} )
 		}
 		try {
@@ -97,7 +97,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 				throw error
 			}
 			throw new Exception( `Unknown error while signing ${ this.name }.`, {
-				code	: ErrorCode.Exception.UNKNOWN,
+				code	: ErrorCode.UNKNOWN,
 				cause	: error,
 			} )
 		}
@@ -113,7 +113,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	{
 		if ( ! this.token ) {
 			throw new Exception( `No ${ this.name } value to verify has been provided.`, {
-				code: ErrorCode.Exception.EMPTY_VALUE,
+				code: ErrorCode.EMPTY_VALUE,
 			} )
 		}
 
@@ -121,7 +121,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 		if ( jwtParts.length < 2 ) {
 			throw new Exception( `Invalid ${ this.name } token format provided. It should be composed by 2 parts at least.`, {
-				code: ErrorCode.Jwt.WRONG_FORMAT,
+				code: ErrorCode.WRONG_FORMAT,
 			} )
 		}
 		
@@ -146,7 +146,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	{
 		if ( ! header ) {
 			throw new Exception( `No ${ this.name } JOSE Header has been provided.`, {
-				code: ErrorCode.Jwt.NO_HEADER,
+				code: ErrorCode.NO_HEADER,
 			} )
 		}
 
@@ -155,12 +155,12 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 			if ( parsed.alg !== this.expectedHeader.alg ) {
 				throw new Exception( `The ${ this.name } JOSE Header algorithm is not the expected algorithm.`, {
-					code: ErrorCode.Jwt.WRONG_ALGO,
+					code: ErrorCode.WRONG_ALGO,
 				} )
 			}
 			if ( parsed.kid !== this.expectedHeader.kid ) {
 				throw new Exception( `The ${ this.name } JOSE Header \`kid\` is not the expected \`kid\`.`, {
-					code: ErrorCode.Jwt.WRONG_KID,
+					code: ErrorCode.WRONG_KID,
 				} )
 			}
 			
@@ -170,7 +170,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 				throw error
 			}
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				code	: ErrorCode.Jwt.WRONG_HEADER,
+				code	: ErrorCode.WRONG_HEADER,
 				cause	: error,
 			} )
 		}
@@ -189,20 +189,20 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 		if ( this.payload.exp && this.payload.exp <= ( now.getTime() / 1000 ) ) {
 			throw new Exception( `The ${ this.name } is expired and no longer accepted.`, {
-				code: ErrorCode.Exception.EXPIRED,
+				code: ErrorCode.EXPIRED,
 			} )
 		}
 		
 		if ( this.payload.nbf && this.payload.nbf >= ( now.getTime() / 1000 ) ) {
 			throw new Exception( `The ${ this.name } is not yet in charge and it cannot be processed.`, {
-				code: ErrorCode.Exception.TOO_EARLY,
+				code: ErrorCode.TOO_EARLY,
 			} )
 		}
 
 
 		if ( this.iss !== this.payload.iss ) {
 			throw new Exception( `Unknown ${ this.name } Issuer.`, {
-				code: ErrorCode.Jwt.UNEXPECTED_ISSUER,
+				code: ErrorCode.UNEXPECTED_ISSUER,
 			} )
 		}
 
@@ -220,13 +220,13 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 			 * Server has defined an audience but parsed payload has defined a different audience.
 			 */
 			throw new Exception( `The given ${ this.name } is intended for a different audience.`, {
-				code: ErrorCode.Jwt.UNEXPECTED_AUDIENCE,
+				code: ErrorCode.UNEXPECTED_AUDIENCE,
 			} )
 		}
 
 		if ( this.jti !== this.payload.jti ) {
 			throw new Exception( `The given ${ this.name } ID is invalid.`, {
-				code: ErrorCode.Jwt.UNEXPECTED_JTI,
+				code: ErrorCode.UNEXPECTED_JTI,
 			} )
 		}
 
@@ -248,7 +248,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 	{
 		if ( this.algorithm === 'none' && !! signature ) {
 			throw new Exception( `Unexpected signature provided for the ${ this.name }.`, {
-				code: ErrorCode.Jwt.UNEXPECTED_SIGN,
+				code: ErrorCode.UNEXPECTED_SIGN,
 			} )
 		}
 		
@@ -259,13 +259,13 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 		if ( ! signature ) {
 			throw new Exception( `No signature provided for the ${ this.name }.`, {
-				code: ErrorCode.Signature.NO_SIGN,
+				code: ErrorCode.NO_SIGN,
 			} )
 		}
 
 		if ( ! this.key ) {
 			throw new Exception( `No public key provided for the ${ this.name } sign verification.`, {
-				code: ErrorCode.Signature.NO_PUBLICKEY,
+				code: ErrorCode.NO_PUBLICKEY,
 			} )
 		}
 
@@ -313,7 +313,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 			return JSON.parse<JsonWebToken.Header>( Base64.toString( Base64.decode( jwtHeader ) ) )
 		} catch ( error ) {
 			throw new Exception( `Invalid ${ this.name } JOSE Header.`, {
-				code	: ErrorCode.Jwt.WRONG_HEADER,
+				code	: ErrorCode.WRONG_HEADER,
 				cause	: error,
 			} )
 		}
@@ -373,7 +373,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 
 			} catch ( error ) {
 				throw new Exception( `Invalid ${ this.name } Payload.`, {
-					code	: ErrorCode.Jwt.WRONG_JWS,
+					code	: ErrorCode.WRONG_JWS,
 					cause	: error,
 				} )
 			}
@@ -417,7 +417,7 @@ export class Jwt<T = unknown> implements Omit<JsonWebToken.Props<T>, 'algorithm'
 		
 		if ( ! this.key ) {
 			throw new Exception( `No private key provided for the ${ this.name } sign creation.`, {
-				code: ErrorCode.Signature.NO_PRIVATEKEY,
+				code: ErrorCode.NO_PRIVATEKEY,
 			} )
 		}
 

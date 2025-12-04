@@ -80,7 +80,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'No access_token payload provided.' )
-					expect( error.code ).toBe( ErrorCode.Exception.EMPTY_VALUE )
+					expect( error.code ).toBe( ErrorCode.EMPTY_VALUE )
 				}
 			}
 	
@@ -100,7 +100,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'No private key provided for the access_token sign creation.' )
-					expect( error.code ).toBe( ErrorCode.Signature.NO_PRIVATEKEY )
+					expect( error.code ).toBe( ErrorCode.NO_PRIVATEKEY )
 				}
 			}
 	
@@ -121,7 +121,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'An error occured while creating the signature.' )
-					expect( error.code ).toBe( ErrorCode.Exception.UNKNOWN )
+					expect( error.code ).toBe( ErrorCode.UNKNOWN )
 					expect( error.cause ).not.toBeNull()
 				}
 			}
@@ -723,7 +723,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'No access_token value to verify has been provided.' )
-					expect( error.code ).toBe( ErrorCode.Exception.EMPTY_VALUE )
+					expect( error.code ).toBe( ErrorCode.EMPTY_VALUE )
 				}
 			}
 	
@@ -742,7 +742,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'Invalid access_token JOSE Header.' )
-					expect( error.code ).toBe( ErrorCode.Jwt.WRONG_HEADER )
+					expect( error.code ).toBe( ErrorCode.WRONG_HEADER )
 				}
 			}
 	
@@ -761,7 +761,7 @@ describe( 'Jwt', () => {
 				expect( error ).toBeInstanceOf( Exception )
 				if ( Exception.isException( error ) ) {
 					expect( error.message ).toBe( 'Invalid access_token Payload.' )
-					expect( error.code ).toBe( ErrorCode.Jwt.WRONG_JWS )
+					expect( error.code ).toBe( ErrorCode.WRONG_JWS )
 				}
 			}
 	
