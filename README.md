@@ -13,7 +13,6 @@
 [downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fcrypto-jwt.svg
 [deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fcrypto-jwt
 [deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fcrypto-jwt
-
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
 
@@ -81,7 +80,7 @@ If no algorithm is specified, `HS256` is being used.
 <summary>Supported algorithms</summary>
 
 | Type         | JWK name | Description                                                              |
-|--------------|----------|--------------------------------------------------------------------------|
+| ------------ | -------- | ------------------------------------------------------------------------ |
 | `none`       |          | No signing process is performed.                                         |
 | `HMAC`       |          |                                                                          |
 |              | `HS1`    | Token signature generated/verified with `HMAC` key and `SHA-1`.          |
@@ -124,28 +123,28 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 
 <summary>Common properties</summary>
 
-| Property | Type   | Default | Description |
-|----------|--------|---------|-------------|
-| `name` | `string` | `"JWT"` | (Optional) The token name. This is used in error messages and is intended for debugging purposes only. |
-| `header` | `JsonWebToken.Header` | - | (Optional) The JOSE Header. |
-|          |        |         |             |
-| `header.alg` | `JsonWebToken.Algorithm` | `HS256` | Message authentication code algorithm. |
-| `header.cty` | `string` | - | (Optional) Content type - If nested signing or encryption is employed, it is recommended to set this to JWT; otherwise, omit this field. |
-| `header.kid`  | `string` | - | (Optional) Key ID - A hint indicating which key the client used to generate the token signature. The server will match this value to a key on file in order to verify that the signature is valid and the token is authentic. |
-| `header.crit` | `string[]` | - | (Optional) Critical - A list of headers that must be understood by the server in order to accept the token as valid. |
-| `header.x5c` | `string \| string[]` | - | ⚠️ x.509 Certificate Chain - A certificate chain in RFC4945 format corresponding to the private key used to generate the token signature. The server will use this information to verify that the signature is valid and the token is authentic. - not supported yet. |
-| `header.x5u` | `string \| string[]` | - | ⚠️ x.509 Certificate Chain URL - A URL where the server can retrieve a certificate chain corresponding to the private key used to generate the token signature. The server will retrieve and use this information to verify that the signature is authentic. - not supported yet. |
-| `header.x5t` | `string` | - | - |
-| `header.jku` | `string` | - | - |
-| `header['x5t#S256']` | `string` | - | - |
-|          |        |         |             |
-| `iat` | `string \| numbet \| Date` | current timestamp | (Optional) The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT has been issued. |
-| `exp` | `string \| numbet \| Date` | - | (Optional) The token expiration Date time value in milliseconds past unix epoch, a Date string or a Date instance on and after which the JWT it's not accepted for processing. |
-| `nbf` | `string \| numbet \| Date` | - | (Optional) The token Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT will start to be accepted for processing. |
-| `jti` | `string` | - | (Optional) JWT ID - Case-sensitive unique identifier of the token even among different issuers. |
-| `iss` | `string` | - | (Optional) Issuer - Identifies principal that issued the JWT. |
-| `sub` | `string` | - | (Optional) Subject - Identifies the subject of the JWT. |
-| `aud` | `string` | - | (Optional) Audience - Identifies the recipients that the JWT is intended for. Each principal intended to process the JWT must identify itself with a value in the audience claim. |
+| Property             | Type                       | Default           | Description                                                                                                                                                                                                                                                                       |
+| -------------------- | -------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`               | `string`                   | `"JWT"`           | (Optional) The token name. This is used in error messages and is intended for debugging purposes only.                                                                                                                                                                            |
+| `header`             | `JsonWebToken.Header`      | -                 | (Optional) The JOSE Header.                                                                                                                                                                                                                                                       |
+|                      |                            |                   |                                                                                                                                                                                                                                                                                   |
+| `header.alg`         | `JsonWebToken.Algorithm`   | `HS256`           | Message authentication code algorithm.                                                                                                                                                                                                                                            |
+| `header.cty`         | `string`                   | -                 | (Optional) Content type - If nested signing or encryption is employed, it is recommended to set this to JWT; otherwise, omit this field.                                                                                                                                          |
+| `header.kid`         | `string`                   | -                 | (Optional) Key ID - A hint indicating which key the client used to generate the token signature. The server will match this value to a key on file in order to verify that the signature is valid and the token is authentic.                                                     |
+| `header.crit`        | `string[]`                 | -                 | (Optional) Critical - A list of headers that must be understood by the server in order to accept the token as valid.                                                                                                                                                              |
+| `header.x5c`         | `string \| string[]`       | -                 | ⚠️ x.509 Certificate Chain - A certificate chain in RFC4945 format corresponding to the private key used to generate the token signature. The server will use this information to verify that the signature is valid and the token is authentic. - not supported yet.             |
+| `header.x5u`         | `string \| string[]`       | -                 | ⚠️ x.509 Certificate Chain URL - A URL where the server can retrieve a certificate chain corresponding to the private key used to generate the token signature. The server will retrieve and use this information to verify that the signature is authentic. - not supported yet. |
+| `header.x5t`         | `string`                   | -                 | -                                                                                                                                                                                                                                                                                 |
+| `header.jku`         | `string`                   | -                 | -                                                                                                                                                                                                                                                                                 |
+| `header['x5t#S256']` | `string`                   | -                 | -                                                                                                                                                                                                                                                                                 |
+|                      |                            |                   |                                                                                                                                                                                                                                                                                   |
+| `iat`                | `string \| numbet \| Date` | current timestamp | (Optional) The token issuing Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT has been issued.                                                                                                                                  |
+| `exp`                | `string \| numbet \| Date` | -                 | (Optional) The token expiration Date time value in milliseconds past unix epoch, a Date string or a Date instance on and after which the JWT it's not accepted for processing.                                                                                                    |
+| `nbf`                | `string \| numbet \| Date` | -                 | (Optional) The token Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT will start to be accepted for processing.                                                                                                                 |
+| `jti`                | `string`                   | -                 | (Optional) JWT ID - Case-sensitive unique identifier of the token even among different issuers.                                                                                                                                                                                   |
+| `iss`                | `string`                   | -                 | (Optional) Issuer - Identifies principal that issued the JWT.                                                                                                                                                                                                                     |
+| `sub`                | `string`                   | -                 | (Optional) Subject - Identifies the subject of the JWT.                                                                                                                                                                                                                           |
+| `aud`                | `string`                   | -                 | (Optional) Audience - Identifies the recipients that the JWT is intended for. Each principal intended to process the JWT must identify itself with a value in the audience claim.                                                                                                 |
 
 </details>
 
@@ -155,9 +154,9 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 
 <summary>Signing properties</summary>
 
-| Property | Type | Description                                                 |
-|----------|------|-------------------------------------------------------------|
-| `data`   | `T`  | The Payload data to sign into the token. Could be any non nullable value. |
+| Property | Type              | Description                                                                                                             |
+| -------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `data`   | `T`               | The Payload data to sign into the token. Could be any non nullable value.                                               |
 | `key`    | `Sign.PrivateKey` | The token secret key used for HMAC or the PEM private key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA signing algorithms. |
 
 </details>
@@ -168,10 +167,10 @@ The `Jwt` class constructor accepts an `object` argument with the following prop
 
 <summary>Signature verification properties</summary>
 
-| Property | Type     | Description       |
-|----------|----------|-------------------|
-| `token`  | `string` | The token string. |
-| `key`    | `Sign.PublicKey` | The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms.  |
+| Property | Type             | Description                                                                                                                      |
+| -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `token`  | `string`         | The token string.                                                                                                                |
+| `key`    | `Sign.PublicKey` | The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms. |
 
 </details>
 
@@ -185,20 +184,20 @@ Here are listed the `Jwt` class instance accessible properties:
 
 <summary>Properties</summary>
 
-| Property  | Type                | Description     |
-|-----------|---------------------|-----------------|
-| `name`    | `string`            | The token name. |
-| `iat`     | `Date \| undefined` | The token issuing Date. This properties defaults to the current timestamp when `Jwt.sign()` is called. |
-| `exp`     | `Date \| undefined` | The token expiration Date. |
-| `nbf`     | `Date \| undefined` | The token "not before" Date. |
-| `aud`     | `string[] \| undefined` | Audience. This value is stored in the `payload` while signing the token or is being used to validate the `aud` property found in the token `payload` to validate. |
-| `iss`     | `string \| undefined` | Issuer. This value is stored in the `payload` while signing the token or is being used to validate the `iss` property found in the token `payload` to validate. |
-| `jti`     | `string \| undefined` | JWT ID. This value is stored in the `payload` while signing the token or is being used to validate the `jti` property found in the token `payload` to validate. |
-| `header` | `JsonWebToken.Header` | The parsed JOSE header. |
-| `payload` | `JsonWebToken.Payload<T>` | The parsed JWS payload. |
-| `isVerified` | `boolean \| null` | Flag that is being set to `true \| false` when `Jwt.verify()` is executed. |
-| `key`        | `Sign.PublicKey \| Sign.PrivateKey` | The key set when creating a new `Jwt` instance. |
-| `token` | `string \| undefined` | The parsed JWT string. |
+| Property     | Type                                | Description                                                                                                                                                       |
+| ------------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | `string`                            | The token name.                                                                                                                                                   |
+| `iat`        | `Date \| undefined`                 | The token issuing Date. This properties defaults to the current timestamp when `Jwt.sign()` is called.                                                            |
+| `exp`        | `Date \| undefined`                 | The token expiration Date.                                                                                                                                        |
+| `nbf`        | `Date \| undefined`                 | The token "not before" Date.                                                                                                                                      |
+| `aud`        | `string[] \| undefined`             | Audience. This value is stored in the `payload` while signing the token or is being used to validate the `aud` property found in the token `payload` to validate. |
+| `iss`        | `string \| undefined`               | Issuer. This value is stored in the `payload` while signing the token or is being used to validate the `iss` property found in the token `payload` to validate.   |
+| `jti`        | `string \| undefined`               | JWT ID. This value is stored in the `payload` while signing the token or is being used to validate the `jti` property found in the token `payload` to validate.   |
+| `header`     | `JsonWebToken.Header`               | The parsed JOSE header.                                                                                                                                           |
+| `payload`    | `JsonWebToken.Payload<T>`           | The parsed JWS payload.                                                                                                                                           |
+| `isVerified` | `boolean \| null`                   | Flag that is being set to `true \| false` when `Jwt.verify()` is executed.                                                                                        |
+| `key`        | `Sign.PublicKey \| Sign.PrivateKey` | The key set when creating a new `Jwt` instance.                                                                                                                   |
+| `token`      | `string \| undefined`               | The parsed JWT string.                                                                                                                                            |
 
 </details>
 
@@ -262,11 +261,11 @@ You can use the `Jwt` class to create or verify a JSON Web Token.
 <summary>Creating a JWT with no signature</summary>
 
 ```ts
-const jwt = new Jwt( {
-  data    : 'Data encoded in the JWT payload.',
-  header  : { alg: 'none' },
-} )
-console.log( jwt.sign() )
+const jwt = new Jwt({
+  data: "Data encoded in the JWT payload.",
+  header: { alg: "none" },
+});
+console.log(jwt.sign());
 ```
 
 </details>
@@ -290,19 +289,19 @@ Be mindful when using a shared key; it can open potential vulnerabilities if the
 ##### Create the token
 
 ```ts
-import crypto from 'crypto'
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import crypto from "crypto";
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const secretKey = crypto.createSecretKey( Buffer.from( 'mysecretkey' ) )
+const secretKey = crypto.createSecretKey(Buffer.from("mysecretkey"));
 
-const jwt = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  key     : secretKey,
-  header  : {
-    alg: 'HS1', // HS1 | HS256 | HS384 | HS512
+const jwt = new Jwt({
+  data: "Data to be signed into the token.",
+  key: secretKey,
+  header: {
+    alg: "HS1", // HS1 | HS256 | HS384 | HS512
   },
-} )
-const signedJwt = jwt.sign()
+});
+const signedJwt = jwt.sign();
 ```
 
 ---
@@ -310,14 +309,14 @@ const signedJwt = jwt.sign()
 ##### Verify the token
 
 ```ts
-const jwt = new Jwt( {
-  token   : signedJwt,
-  key     : secretKey,
-  header  : {
-    alg: 'HS1', // HS1 | HS256 | HS384 | HS512 -> expected algorithm.
+const jwt = new Jwt({
+  token: signedJwt,
+  key: secretKey,
+  header: {
+    alg: "HS1", // HS1 | HS256 | HS384 | HS512 -> expected algorithm.
   },
-} )
-const isValid = jwt.verify()
+});
+const isValid = jwt.verify();
 ```
 
 </details>
@@ -333,44 +332,44 @@ const isValid = jwt.verify()
 - Generate a keypair:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const keypair = crypto.generateKeyPairSync( 'dsa', {
-  modulusLength       : 2048,
-  divisorLength       : 256,
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const keypair = crypto.generateKeyPairSync("dsa", {
+  modulusLength: 2048,
+  divisorLength: 256,
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const jwt = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  key     : keypair.privateKey,
-  header  : {
-    alg: 'DS1', // DS1 | DS256 | DS384 | DS512
+const jwt = new Jwt({
+  data: "Data to be signed into the token.",
+  key: keypair.privateKey,
+  header: {
+    alg: "DS1", // DS1 | DS256 | DS384 | DS512
   },
-} )
-const signedJwt = jwt.sign()
+});
+const signedJwt = jwt.sign();
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const jwt = new Jwt( {
-  token   : signedJwt,
-  key     : keypair.publicKey,
-  header  : {
-    alg: 'DS1', // DS1 | DS256 | DS384 | DS512 // expected algorithm
+const jwt = new Jwt({
+  token: signedJwt,
+  key: keypair.publicKey,
+  header: {
+    alg: "DS1", // DS1 | DS256 | DS384 | DS512 // expected algorithm
   },
-} )
-const isValid = jwt.verify()
+});
+const isValid = jwt.verify();
 ```
 
 </details>
@@ -394,73 +393,73 @@ To generate a JWT signed with the `ES256`/`ES384`/`ES512` algorithm and EcDSA ke
 - Generate a keypair:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const es256keypair = crypto.generateKeyPairSync( 'ec', {
-  namedCurve          : 'secp256k1',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const es256keypair = crypto.generateKeyPairSync("ec", {
+  namedCurve: "secp256k1",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 
-const es384keypair = crypto.generateKeyPairSync( 'ec', {
-  namedCurve          : 'secp384r1',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const es384keypair = crypto.generateKeyPairSync("ec", {
+  namedCurve: "secp384r1",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 
-const es512keypair = crypto.generateKeyPairSync( 'ec', {
-  namedCurve          : 'secp521r1',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const es512keypair = crypto.generateKeyPairSync("ec", {
+  namedCurve: "secp521r1",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const es256Token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'ES256' },
-  key     : es256keypair.privateKey,
-} ).sign()
+const es256Token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "ES256" },
+  key: es256keypair.privateKey,
+}).sign();
 
-const es384Token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'ES384' },
-  key     : es384keypair.privateKey,
-} ).sign()
+const es384Token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "ES384" },
+  key: es384keypair.privateKey,
+}).sign();
 
-const es512Token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'ES512' },
-  key     : es512keypair.privateKey,
-} ).sign()
+const es512Token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "ES512" },
+  key: es512keypair.privateKey,
+}).sign();
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const es256Valid = new Jwt( {
-  token   : es256Token,
-  header  : { alg: 'ES256' }, // expected algorithm
-  key     : es256keypair.publicKey,
-} ).verify()
+const es256Valid = new Jwt({
+  token: es256Token,
+  header: { alg: "ES256" }, // expected algorithm
+  key: es256keypair.publicKey,
+}).verify();
 
-const es384Valid = new Jwt( {
-  token   : es384Token,
-  header  : { alg: 'ES384' }, // expected algorithm
-  key     : es384keypair.publicKey,
-} ).verify()
+const es384Valid = new Jwt({
+  token: es384Token,
+  header: { alg: "ES384" }, // expected algorithm
+  key: es384keypair.publicKey,
+}).verify();
 
-const es512Valid = new Jwt( {
-  token   : es512Token,
-  header  : { alg: 'ES512' }, // expected algorithm
-  key     : es512keypair.publicKey,
-} ).verify()
+const es512Valid = new Jwt({
+  token: es512Token,
+  header: { alg: "ES512" }, // expected algorithm
+  key: es512keypair.publicKey,
+}).verify();
 ```
 
 </details>
@@ -474,53 +473,53 @@ const es512Valid = new Jwt( {
 - Generate a keypair:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const ed448keypair = crypto.generateKeyPairSync( 'ed448', {
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const ed448keypair = crypto.generateKeyPairSync("ed448", {
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 
-const ed25519keypair = crypto.generateKeyPairSync( 'ed25519', {
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const ed25519keypair = crypto.generateKeyPairSync("ed25519", {
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const ed448Token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'EdDSA' },
-  key     : ed448keypair.privateKey,
-} ).sign()
+const ed448Token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "EdDSA" },
+  key: ed448keypair.privateKey,
+}).sign();
 
-const ed25519Token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'EdDSA' },
-  key     : ed25519keypair.privateKey,
-} ).sign()
+const ed25519Token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "EdDSA" },
+  key: ed25519keypair.privateKey,
+}).sign();
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const ed448Valid = new Jwt( {
-  token   : ed448Token,
-  header  : { alg: 'EdDSA' }, // expected algorithm
-  key     : ed448keypair.publicKey,
-} ).verify()
+const ed448Valid = new Jwt({
+  token: ed448Token,
+  header: { alg: "EdDSA" }, // expected algorithm
+  key: ed448keypair.publicKey,
+}).verify();
 
-const ed25519Valid = new Jwt( {
-  token   : ed25519Token,
-  header  : { alg: 'EdDSA' }, // expected algorithm
-  key     : ed25519keypair.publicKey,
-} ).verify()
+const ed25519Valid = new Jwt({
+  token: ed25519Token,
+  header: { alg: "EdDSA" }, // expected algorithm
+  key: ed25519keypair.publicKey,
+}).verify();
 ```
 
 </details>
@@ -536,38 +535,38 @@ const ed25519Valid = new Jwt( {
 - Generate a keypair:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const bytes   = 256
-const keypair = crypto.generateKeyPairSync( 'rsa', {
-  modulusLength     : bytes * 8,
-  publicKeyEncoding : { type: 'spki', format: 'pem' },
-  privateKeyEncoding: { type: 'pkcs1', format: 'pem' },
-} )
+const bytes = 256;
+const keypair = crypto.generateKeyPairSync("rsa", {
+  modulusLength: bytes * 8,
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs1", format: "pem" },
+});
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const signedJwt = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'RS1' }, // RS1 | RS256 | RS384 | RS512
-  key     : keypair.privateKey,
-} ).sign()
+const signedJwt = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "RS1" }, // RS1 | RS256 | RS384 | RS512
+  key: keypair.privateKey,
+}).sign();
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const validToken = new Jwt( {
-  token   : signedJwt,
-  header  : { alg: 'RS1' }, // RS1 | RS256 | RS384 | RS512
-  key     : keypair.publicKey,
-} ).verify()
+const validToken = new Jwt({
+  token: signedJwt,
+  header: { alg: "RS1" }, // RS1 | RS256 | RS384 | RS512
+  key: keypair.publicKey,
+}).verify();
 ```
 
 </details>
@@ -583,84 +582,84 @@ const validToken = new Jwt( {
 - Generate a keypair:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const bytes = 256
+const bytes = 256;
 
 /** RSASSA-PSS using `SHA-256` and MGF1 with `SHA-256` */
-const rsapss256keypair = crypto.generateKeyPairSync( 'rsa-pss', {
-  modulusLength       : bytes * 8,
-  hashAlgorithm       : 'SHA-256',
-  mgf1HashAlgorithm   : 'SHA-256',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const rsapss256keypair = crypto.generateKeyPairSync("rsa-pss", {
+  modulusLength: bytes * 8,
+  hashAlgorithm: "SHA-256",
+  mgf1HashAlgorithm: "SHA-256",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 
 /** RSASSA-PSS using `SHA-384` and MGF1 with `SHA-384` */
-const rsapss384keypair = crypto.generateKeyPairSync( 'rsa-pss', {
-  modulusLength       : bytes * 8,
-  hashAlgorithm       : 'SHA-384',
-  mgf1HashAlgorithm   : 'SHA-384',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const rsapss384keypair = crypto.generateKeyPairSync("rsa-pss", {
+  modulusLength: bytes * 8,
+  hashAlgorithm: "SHA-384",
+  mgf1HashAlgorithm: "SHA-384",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 
 /** RSASSA-PSS using `SHA-512` and MGF1 with `SHA-512` */
-const rsapss512keypair = crypto.generateKeyPairSync( 'rsa-pss', {
-  modulusLength       : bytes * 8,
-  hashAlgorithm       : 'SHA-512',
-  mgf1HashAlgorithm   : 'SHA-512',
-  publicKeyEncoding   : { type: 'spki', format: 'pem' },
-  privateKeyEncoding  : { type: 'pkcs8', format: 'pem' },
-} )
+const rsapss512keypair = crypto.generateKeyPairSync("rsa-pss", {
+  modulusLength: bytes * 8,
+  hashAlgorithm: "SHA-512",
+  mgf1HashAlgorithm: "SHA-512",
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: { type: "pkcs8", format: "pem" },
+});
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const rsapss256token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'PS256' },
-  key     : rsapss256keypair.privateKey,
-} ).sign()
+const rsapss256token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "PS256" },
+  key: rsapss256keypair.privateKey,
+}).sign();
 
-const rsapss384token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'PS384' },
-  key     : rsapss384keypair.privateKey,
-} ).sign()
+const rsapss384token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "PS384" },
+  key: rsapss384keypair.privateKey,
+}).sign();
 
-const rsapss512token = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'PS512' },
-  key     : rsapss512keypair.privateKey,
-} ).sign()
+const rsapss512token = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "PS512" },
+  key: rsapss512keypair.privateKey,
+}).sign();
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import { Jwt } from "@alessiofrittoli/crypto-jwt";
 
-const rsapss256Valid = new Jwt( {
-  token   : rsapss256token,
-  header  : { alg: 'PS256' },
-  key     : rsapss256keypair.publicKey,
-} ).verify()
+const rsapss256Valid = new Jwt({
+  token: rsapss256token,
+  header: { alg: "PS256" },
+  key: rsapss256keypair.publicKey,
+}).verify();
 
-const rsapss384Valid = new Jwt( {
-  token   : rsapss384token,
-  header  : { alg: 'PS384' },
-  key     : rsapss384keypair.publicKey,
-} ).verify()
+const rsapss384Valid = new Jwt({
+  token: rsapss384token,
+  header: { alg: "PS384" },
+  key: rsapss384keypair.publicKey,
+}).verify();
 
-const rsapss512Valid = new Jwt( {
-  token   : rsapss512token,
-  header  : { alg: 'PS512' },
-  key     : rsapss512keypair.publicKey,
-} ).verify()
+const rsapss512Valid = new Jwt({
+  token: rsapss512token,
+  header: { alg: "PS512" },
+  key: rsapss512keypair.publicKey,
+}).verify();
 ```
 
 </details>
@@ -674,28 +673,33 @@ Most of asymmetric key pairs allows you to set a passphrase for the Private Key.
 Let's assume we got this keypair with the following passphrase:
 
 ```ts
-import crypto from 'crypto'
+import crypto from "crypto";
 
-const bytes       = 256
-const passphrase  = 'my-private-key-optional-passphrase'
-const keypair     = crypto.generateKeyPairSync( 'rsa', {
-    modulusLength       : 256 * 8,
-    publicKeyEncoding   : { type: 'spki', format: 'pem' },
-    privateKeyEncoding  : { type: 'pkcs1', format: 'pem', passphrase, cipher: 'aes-256-cbc' },
-} )
+const bytes = 256;
+const passphrase = "my-private-key-optional-passphrase";
+const keypair = crypto.generateKeyPairSync("rsa", {
+  modulusLength: 256 * 8,
+  publicKeyEncoding: { type: "spki", format: "pem" },
+  privateKeyEncoding: {
+    type: "pkcs1",
+    format: "pem",
+    passphrase,
+    cipher: "aes-256-cbc",
+  },
+});
 ```
 
 We can then sign a token as follow:
 
 ```ts
-const jwt = new Jwt( {
-  data    : 'Data to be signed into the token.',
-  header  : { alg: 'RS1' },
-  key     : {
-    key         : keypair.privateKey,
-    passphrase  : passphrase,
+const jwt = new Jwt({
+  data: "Data to be signed into the token.",
+  header: { alg: "RS1" },
+  key: {
+    key: keypair.privateKey,
+    passphrase: passphrase,
   },
-} )
+});
 ```
 
 ---
@@ -790,28 +794,28 @@ The `ErrorCode` enumerator can be used to handle different errors with ease.
 
 <summary>`ErrorCode` enum</summary>
 
-| Constant              | Description                                              |
-|-----------------------|----------------------------------------------------------|
-| `UNKNOWN`             | Thrown when `Jwt.sign()` encounters an unexpected error. |
-| `NO_PRIVATEKEY`       | Thrown when `Jwt.sign()` has no private key. |
-| `EMPTY_VALUE`         | Thrown when: |
-|                       | `Jwt.sign()` has no `payload` to sign. |
-|                       | `Jwt.verify()` has no `token` to verify. |
-| `WRONG_FORMAT`        | Thrown when `Jwt.verify()` encounter a malformed JWT. |
-| `NO_HEADER`           | Thrown when `Jwt.verify()` has no JOSE Header to validate. |
-| `WRONG_HEADER`        | Thrown when `Jwt.verify()` cannot parse JOSE Header. |
-| `WRONG_ALGO`          | Thrown when `Jwt.verify()` finds an unexpected `alg` field in the given `token` JOSE Header. |
-| `WRONG_KID`           | Thrown when `Jwt.verify()` finds an unexpected `kid` field in the given `token` JOSE Header. |
-| `WRONG_JWS`           | Thrown when `Jwt` couldn't parse the given `token` payload. |
-| `EXPIRED`             | Thrown when `Jwt.verify()` finds an expired token. |
-| `TOO_EARLY`           | Thrown when `Jwt.verify()` verifies a token that cannot be still processed. |
-| `UNEXPECTED_ISSUER`   | Thrown when `Jwt.verify()` finds an unexpected `iss` field in the given `token` payload. |
-| `UNEXPECTED_AUDIENCE` | Thrown when `Jwt.verify()` finds an unexpected `aud` field in the given `token` payload. |
-| `UNEXPECTED_JTI`      | Thrown when `Jwt.verify()` finds an unexpected `jti` field in the given `token` payload. |
-| `NO_SIGN`             | Thrown when `Jwt.verify()` doesn't find any signature in the given `token`. |
+| Constant              | Description                                                                                                |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `UNKNOWN`             | Thrown when `Jwt.sign()` encounters an unexpected error.                                                   |
+| `NO_PRIVATEKEY`       | Thrown when `Jwt.sign()` has no private key.                                                               |
+| `EMPTY_VALUE`         | Thrown when:                                                                                               |
+|                       | `Jwt.sign()` has no `payload` to sign.                                                                     |
+|                       | `Jwt.verify()` has no `token` to verify.                                                                   |
+| `WRONG_FORMAT`        | Thrown when `Jwt.verify()` encounter a malformed JWT.                                                      |
+| `NO_HEADER`           | Thrown when `Jwt.verify()` has no JOSE Header to validate.                                                 |
+| `WRONG_HEADER`        | Thrown when `Jwt.verify()` cannot parse JOSE Header.                                                       |
+| `WRONG_ALGO`          | Thrown when `Jwt.verify()` finds an unexpected `alg` field in the given `token` JOSE Header.               |
+| `WRONG_KID`           | Thrown when `Jwt.verify()` finds an unexpected `kid` field in the given `token` JOSE Header.               |
+| `WRONG_JWS`           | Thrown when `Jwt` couldn't parse the given `token` payload.                                                |
+| `EXPIRED`             | Thrown when `Jwt.verify()` finds an expired token.                                                         |
+| `TOO_EARLY`           | Thrown when `Jwt.verify()` verifies a token that cannot be still processed.                                |
+| `UNEXPECTED_ISSUER`   | Thrown when `Jwt.verify()` finds an unexpected `iss` field in the given `token` payload.                   |
+| `UNEXPECTED_AUDIENCE` | Thrown when `Jwt.verify()` finds an unexpected `aud` field in the given `token` payload.                   |
+| `UNEXPECTED_JTI`      | Thrown when `Jwt.verify()` finds an unexpected `jti` field in the given `token` payload.                   |
+| `NO_SIGN`             | Thrown when `Jwt.verify()` doesn't find any signature in the given `token`.                                |
 | `UNEXPECTED_SIGN`     | Thrown when `Jwt.verify()` finds an unexpected signature in the given `token` (expected `none` algorithm). |
-| `INVALID_SIGN`        | Thrown when `Jwt.verify()` receives an invalid signature (altered JWT). |
-| `NO_PUBLICKEY`        | Thrown when `Jwt.verify()` has no public key. |
+| `INVALID_SIGN`        | Thrown when `Jwt.verify()` receives an invalid signature (altered JWT).                                    |
+| `NO_PUBLICKEY`        | Thrown when `Jwt.verify()` has no public key.                                                              |
 
 </details>
 
@@ -822,23 +826,23 @@ The `ErrorCode` enumerator can be used to handle different errors with ease.
 <summary>Example usage</summary>
 
 ```ts
-import { Exception } from '@alessiofrittoli/exception'
-import { ErrorCode } from '@alessiofrittoli/crypto-jwt/error'
+import { Exception } from "@alessiofrittoli/exception";
+import { ErrorCode } from "@alessiofrittoli/crypto-jwt/error";
 
 try {
-  new Jwt( {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.invalid'
-  } ) // will throw error with code: ErrorCode.Jwt.WRONG_JWS
-} catch ( error ) {
-  if ( Exception.isException<string, ErrorCode>( error ) ) {
-      switch ( error.code ) {
-        case ErrorCode.Jwt.WRONG_JWS:
-          // malformed JWT payload
-          break
-        // ... other cases here
-        default:
-          // unknown error
-      }
+  new Jwt({
+    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.invalid",
+  }); // will throw error with code: ErrorCode.WRONG_JWS
+} catch (error) {
+  if (Exception.isException<string, ErrorCode>(error)) {
+    switch (error.code) {
+      case ErrorCode.WRONG_JWS:
+        // malformed JWT payload
+        break;
+      // ... other cases here
+      default:
+      // unknown error
+    }
   }
 }
 ```
