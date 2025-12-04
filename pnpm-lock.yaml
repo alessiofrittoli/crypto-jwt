@@ -17,6 +17,9 @@ importers:
       '@alessiofrittoli/exception':
         specifier: ^3.5.0
         version: 3.5.0
+      '@alessiofrittoli/type-utils':
+        specifier: ^1.9.0
+        version: 1.9.0
     devDependencies:
       '@alessiofrittoli/node-scripts':
         specifier: ^3.3.0
