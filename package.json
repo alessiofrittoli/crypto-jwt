@@ -30,19 +30,32 @@
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.js"
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			}
 		},
 		"./error": {
-			"types": "./dist/error.d.ts",
-			"import": "./dist/error.mjs",
-			"require": "./dist/error.js"
+			"import": {
+				"types": "./dist/error.d.mts",
+				"default": "./dist/error.mjs"
+			},
+			"require": {
+				"types": "./dist/error.d.ts",
+				"default": "./dist/error.js"
+			}
 		},
 		"./types": {
-			"types": "./dist/types.d.ts",
-			"import": "./dist/types.mjs",
-			"require": "./dist/types.js"
+			"import": {
+				"types": "./dist/types.d.mts"
+			},
+			"require": {
+				"types": "./dist/types.d.ts"
+			}
 		}
 	},
 	"sideEffects": false,
@@ -54,7 +67,7 @@
 		"build:prod": "cross-env NODE_ENV=production tsup",
 		"build": "pnpm lint && pnpm test:ci && pnpm build:prod",
 		"lint": "eslint",
-		"release": "node scripts/publish.js --verbose --npm",
+		"release": "node scripts/release.js --verbose --npm",
 		"//2a": "*********************************************************************",
 		"//2b": "***************************** UNIT TESTS ****************************",
 		"//2c": "*********************************************************************",
