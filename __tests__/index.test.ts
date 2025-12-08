@@ -673,24 +673,21 @@ describe( 'Jwt', () => {
 	
 	
 		it( 'verifies expiration', () => {
-			let pass = false
+
 			const token = new Jwt( {
 				key	: secretKey,
 				data: 'Data to be signed into the token.',
 				iat	: new Date( new Date().getTime() - ( 5 * 60 * 1000 ) ),
 				exp	: new Date( new Date().getTime() - ( 2 * 60 * 1000 ) ),
 			} ).sign()
-			try {
+
+			expect( () => (
 				new Jwt( {
 					token	: token,
 					key		: secretKey,
 				} ).verify()
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			} catch ( error ) {
-				pass = true
-			}
-	
-			expect( pass ).toBe( true )
+			) ).toThrow( 'The JWT is expired and no longer accepted.' )
+
 		} )
 	
 	
