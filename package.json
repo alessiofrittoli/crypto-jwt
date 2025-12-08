@@ -99,11 +99,11 @@
 		"ts-node": "^10.9.2",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.48.1"
+		"typescript-eslint": "^8.49.0"
 	},
 	"dependencies": {
 		"@alessiofrittoli/crypto-encoder": "^3.3.0",
-		"@alessiofrittoli/crypto-signature": "^2.5.0",
+		"@alessiofrittoli/crypto-signature": "^2.5.1",
 		"@alessiofrittoli/exception": "^3.5.0",
 		"@alessiofrittoli/type-utils": "^1.9.0"
 	}
