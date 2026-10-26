@@ -1,17 +1,13 @@
 import type { Sign } from '@alessiofrittoli/crypto-signature/types'
 
-export namespace JsonWebToken
-{
+export namespace JsonWebToken {
 	/**
 	 * JWS Signature algorithm parameter.
-	 * 
+	 *
 	 * @link https://datatracker.ietf.org/doc/html/rfc7518#section-3.1
 	 */
-	export type Algorithm = Sign.AlgorithmJwkName | (
-		| 'none' // No digital signature or MAC performed
-	)
+	export type Algorithm = Sign.AlgorithmJwkName | 'none' // No digital signature or MAC performed
 
-	
 	/**
 	 * JOSE Header.
 	 *
@@ -20,8 +16,7 @@ export namespace JsonWebToken
 	 * The JOSE Header is comprised of a set of Header Parameters that
 	 * typically consist of a name/value pair: the hashing algorithm being used (e.g., HMAC SHA256 or RSA) and the type of the JWT.
 	 */
-	export interface Header
-	{
+	export interface Header {
 		/** Message authentication code algorithm - The issuer can freely set an algorithm to verify the signature on the token. However, some supported algorithms are [insecure](https://www.chosenplaintext.ca/2015/03/31/jwt-algorithm-confusion.html). */
 		alg: JsonWebToken.Algorithm
 		/** Token type - If present, it must be set to a registered [IANA Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml). */
@@ -31,6 +26,7 @@ export namespace JsonWebToken
 		/** Key ID - A hint indicating which key the client used to generate the token signature. The server will match this value to a key on file in order to verify that the signature is valid and the token is authentic. */
 		kid?: string
 		/** Critical - A list of headers that must be understood by the server in order to accept the token as valid. */
+		// oxlint-disable-next-line typescript/no-redundant-type-constituents
 		crit?: Array<string | Exclude<keyof Header, 'crit'>>
 		/** x.509 Certificate Chain - A certificate chain in RFC4945 format corresponding to the private key used to generate the token signature. The server will use this information to verify that the signature is valid and the token is authentic. */
 		x5c?: string | string[]
@@ -41,14 +37,13 @@ export namespace JsonWebToken
 		'x5t#S256'?: string
 	}
 
-
 	/**
 	 * JWS payload.
 	 * The payload contains statements about the entity (typically, the user) and additional entity attributes, which are called claims.
 	 */
 	export type JwsPayload = {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		[ key: string ]: any
+		[key: string]: any
 		/** Issued at - Identifies the time at which the JWT was issued. The value must be a NumericDate either an integer or decimal, representing seconds past unix epoch. */
 		iat: number
 		/**
@@ -69,17 +64,17 @@ export namespace JsonWebToken
 		jti?: string
 	}
 
-
 	/**
 	 * The actual JWS payload with additional data.
-	 * 
+	 *
 	 */
-	export type Payload<T> = T extends string | number | boolean | Array<unknown> ? { data: T } & JwsPayload : T & JwsPayload
-
+	export type Payload<T> = T extends string | number | boolean | Array<unknown>
+		? { data: T } & JwsPayload
+		: T & JwsPayload
 
 	/**
 	 * Accepted properties for the Jwt instance.
-	 * 
+	 *
 	 */
 	export type Props<T = unknown> = {
 		/** The Token name. */
@@ -92,17 +87,21 @@ export namespace JsonWebToken
 		exp?: string | number | Date
 		/** The token Date time value in milliseconds past unix epoch, a Date string or a Date instance on which the JWT will start to be accepted for processing. */
 		nbf?: string | number | Date
-	} & ( {
-		/** The token value. */
-		token: string
-		data?: never
-		/** The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms.  */
-		key?: Sign.PublicKey
-	} | {
-		/** The Payload data to sign into the token. Could be anything. */
-		data: T
-		token?: never
-		/** The token secret key used for HMAC or the PEM private key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA signing algorithms. */
-		key?: Sign.PrivateKey
-	} ) & Pick<JsonWebToken.JwsPayload, 'jti' | 'iss' | 'sub' | 'aud'>
+	} & (
+		| {
+				/** The token value. */
+				token: string
+				data?: never
+				/** The token secret key used for HMAC or the PEM public key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA sign verification algorithms.  */
+				key?: Sign.PublicKey
+		  }
+		| {
+				/** The Payload data to sign into the token. Could be anything. */
+				data: T
+				token?: never
+				/** The token secret key used for HMAC or the PEM private key for RSA, RSASSA-PSS, DSA, EdDSA and EcDSA signing algorithms. */
+				key?: Sign.PrivateKey
+		  }
+	) &
+		Pick<JsonWebToken.JwsPayload, 'jti' | 'iss' | 'sub' | 'aud'>
 }
