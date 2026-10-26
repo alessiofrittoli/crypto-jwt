@@ -1,22 +1,46 @@
-# Crypto JSON Web Token 🔗
+<h1 align="center">Crypto JSON Web Token 🔗</h1>
+<p align="center">
+  Lightweight TypeScript JSON Web Tokens library
+</p>
+<p align="center">
+  <a href="https://npmjs.org/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://img.shields.io/npm/v/@alessiofrittoli/crypto-jwt" alt="Latest version"/>
+  </a>
+  <a href="https://coveralls.io/github/alessiofrittoli/crypto-jwt">
+    <img src="https://coveralls.io/repos/github/alessiofrittoli/crypto-jwt/badge.svg" alt="Test coverage"/>
+  </a>
+  <a href="https://socket.dev/npm/package/@alessiofrittoli/crypto-jwt/overview">
+    <img src="https://socket.dev/api/badge/npm/package/@alessiofrittoli/crypto-jwt" alt="Socket Security score"/>
+  </a>
+  <a href="https://npmjs.org/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://img.shields.io/npm/dm/@alessiofrittoli/crypto-jwt.svg" alt="npm downloads"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://badgen.net/bundlephobia/dependency-count/@alessiofrittoli/crypto-jwt" alt="Dependencies"/>
+  </a>
+  <a href="https://libraries.io/npm/%40alessiofrittoli%2Fcrypto-jwt">
+    <img src="https://img.shields.io/librariesio/release/npm/@alessiofrittoli/crypto-jwt" alt="Dependencies status"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://badgen.net/bundlephobia/min/@alessiofrittoli/crypto-jwt" alt="minified"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://badgen.net/bundlephobia/minzip/@alessiofrittoli/crypto-jwt" alt="minizipped"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/crypto-jwt">
+    <img src="https://badgen.net/bundlephobia/tree-shaking/@alessiofrittoli/crypto-jwt" alt="Tree shakable"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/sponsors/alessiofrittoli">
+    <img src="https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2" alt="Fund this package"/>
+  </a>
+</p>
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Fcrypto-jwt
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Fcrypto-jwt
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/crypto-jwt/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/crypto-jwt
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/crypto-jwt
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/crypto-jwt/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fcrypto-jwt.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fcrypto-jwt
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fcrypto-jwt
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-
-## Lightweight TypeScript JSON Web Tokens library
 
 JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties.
 
@@ -29,6 +53,13 @@ JSON Web Tokens should be only used to store reference data (e.g. user ID). The 
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [Development](#development)
+  - [Local development](#local-development)
+  - [Production build](#production-build)
+  - [Unit tests](#unit-tests)
+    - [Run tests with coverage](#run-tests-with-coverage)
+  - [Contributing](#contributing)
+  - [Security](#security)
 - [Supported Algorithms](#supported-algorithms)
 - [Jwt Class API Reference](#jwt-class-api-reference)
   - [Constructor](#constructor)
@@ -39,11 +70,6 @@ JSON Web Tokens should be only used to store reference data (e.g. user ID). The 
   - [Not before](#not-before)
   - [Type casting](#type-casting)
 - [Error handling](#error-handling)
-- [Development](#development)
-  - [ESLint](#eslint)
-  - [Jest](#jest)
-- [Contributing](#contributing)
-- [Security](#security)
 - [Credits](#made-with-)
 
 ---
@@ -62,6 +88,83 @@ or using `pnpm`
 pnpm i @alessiofrittoli/crypto-jwt
 ```
 
+---
+
+### Development
+
+Run the following to start development
+
+```shell
+nvm use
+
+pnpm i
+```
+
+#### Local development
+
+Run the following
+
+```shell
+pnpm dev
+```
+
+This will generate unminified output code, sourcemaps and will enable source file watcher.
+
+---
+
+#### Production build
+
+Run the following to create a local production build
+
+```shell
+pnpm build
+```
+
+This will generate minified output code without sourcemaps.
+
+---
+
+#### Unit tests
+
+Run all the defined test suites by running the following:
+
+```shell
+# Run tests and watch file changes.
+pnpm test:watch
+
+# Run tests in a CI environment.
+pnpm test:ci
+```
+
+---
+
+##### Run tests with coverage
+
+An HTTP server is then started to serve coverage files from `./coverage` folder.
+
+⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
+
+```shell
+pnpm test:coverage:serve
+```
+
+---
+
+#### Contributing
+
+Contributions are truly welcome!
+
+Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
+
+Help keep this project up to date with [GitHub Sponsor][sponsor-url].
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
+
+---
+
+#### Security
+
+If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 ---
 
 ### Supported Algorithms
@@ -114,6 +217,14 @@ If no algorithm is specified, `HS256` is being used.
 ---
 
 ### Jwt Class API Reference
+
+> [!WARNING]
+>
+> Requires the following packages to be installed:
+>
+> - [`@alessiofrittoli/crypto-signature`](https://npmjs.com/package/@alessiofrittoli/crypto-signature)
+> - [`@alessiofrittoli/crypto-encoder`](https://npmjs.com/package/@alessiofrittoli/crypto-encoder)
+> - [`@alessiofrittoli/exception`](https://npmjs.com/package/@alessiofrittoli/exception)
 
 #### Constructor
 
@@ -262,10 +373,10 @@ You can use the `Jwt` class to create or verify a JSON Web Token.
 
 ```ts
 const jwt = new Jwt({
-  data: "Data encoded in the JWT payload.",
-  header: { alg: "none" },
-});
-console.log(jwt.sign());
+  data: 'Data encoded in the JWT payload.',
+  header: { alg: 'none' },
+})
+console.log(jwt.sign())
 ```
 
 </details>
@@ -289,19 +400,19 @@ Be mindful when using a shared key; it can open potential vulnerabilities if the
 ##### Create the token
 
 ```ts
-import crypto from "crypto";
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
+import crypto from 'crypto'
 
-const secretKey = crypto.createSecretKey(Buffer.from("mysecretkey"));
+const secretKey = crypto.createSecretKey(Buffer.from('mysecretkey'))
 
 const jwt = new Jwt({
-  data: "Data to be signed into the token.",
+  data: 'Data to be signed into the token.',
   key: secretKey,
   header: {
-    alg: "HS1", // HS1 | HS256 | HS384 | HS512
+    alg: 'HS1', // HS1 | HS256 | HS384 | HS512
   },
-});
-const signedJwt = jwt.sign();
+})
+const signedJwt = jwt.sign()
 ```
 
 ---
@@ -313,10 +424,10 @@ const jwt = new Jwt({
   token: signedJwt,
   key: secretKey,
   header: {
-    alg: "HS1", // HS1 | HS256 | HS384 | HS512 -> expected algorithm.
+    alg: 'HS1', // HS1 | HS256 | HS384 | HS512 -> expected algorithm.
   },
-});
-const isValid = jwt.verify();
+})
+const isValid = jwt.verify()
 ```
 
 </details>
@@ -332,44 +443,44 @@ const isValid = jwt.verify();
 - Generate a keypair:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const keypair = crypto.generateKeyPairSync("dsa", {
+const keypair = crypto.generateKeyPairSync('dsa', {
   modulusLength: 2048,
   divisorLength: 256,
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const jwt = new Jwt({
-  data: "Data to be signed into the token.",
+  data: 'Data to be signed into the token.',
   key: keypair.privateKey,
   header: {
-    alg: "DS1", // DS1 | DS256 | DS384 | DS512
+    alg: 'DS1', // DS1 | DS256 | DS384 | DS512
   },
-});
-const signedJwt = jwt.sign();
+})
+const signedJwt = jwt.sign()
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const jwt = new Jwt({
   token: signedJwt,
   key: keypair.publicKey,
   header: {
-    alg: "DS1", // DS1 | DS256 | DS384 | DS512 // expected algorithm
+    alg: 'DS1', // DS1 | DS256 | DS384 | DS512 // expected algorithm
   },
-});
-const isValid = jwt.verify();
+})
+const isValid = jwt.verify()
 ```
 
 </details>
@@ -393,73 +504,73 @@ To generate a JWT signed with the `ES256`/`ES384`/`ES512` algorithm and EcDSA ke
 - Generate a keypair:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const es256keypair = crypto.generateKeyPairSync("ec", {
-  namedCurve: "secp256k1",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+const es256keypair = crypto.generateKeyPairSync('ec', {
+  namedCurve: 'secp256k1',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 
-const es384keypair = crypto.generateKeyPairSync("ec", {
-  namedCurve: "secp384r1",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+const es384keypair = crypto.generateKeyPairSync('ec', {
+  namedCurve: 'secp384r1',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 
-const es512keypair = crypto.generateKeyPairSync("ec", {
-  namedCurve: "secp521r1",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+const es512keypair = crypto.generateKeyPairSync('ec', {
+  namedCurve: 'secp521r1',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const es256Token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "ES256" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'ES256' },
   key: es256keypair.privateKey,
-}).sign();
+}).sign()
 
 const es384Token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "ES384" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'ES384' },
   key: es384keypair.privateKey,
-}).sign();
+}).sign()
 
 const es512Token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "ES512" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'ES512' },
   key: es512keypair.privateKey,
-}).sign();
+}).sign()
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const es256Valid = new Jwt({
   token: es256Token,
-  header: { alg: "ES256" }, // expected algorithm
+  header: { alg: 'ES256' }, // expected algorithm
   key: es256keypair.publicKey,
-}).verify();
+}).verify()
 
 const es384Valid = new Jwt({
   token: es384Token,
-  header: { alg: "ES384" }, // expected algorithm
+  header: { alg: 'ES384' }, // expected algorithm
   key: es384keypair.publicKey,
-}).verify();
+}).verify()
 
 const es512Valid = new Jwt({
   token: es512Token,
-  header: { alg: "ES512" }, // expected algorithm
+  header: { alg: 'ES512' }, // expected algorithm
   key: es512keypair.publicKey,
-}).verify();
+}).verify()
 ```
 
 </details>
@@ -473,53 +584,53 @@ const es512Valid = new Jwt({
 - Generate a keypair:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const ed448keypair = crypto.generateKeyPairSync("ed448", {
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+const ed448keypair = crypto.generateKeyPairSync('ed448', {
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 
-const ed25519keypair = crypto.generateKeyPairSync("ed25519", {
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+const ed25519keypair = crypto.generateKeyPairSync('ed25519', {
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const ed448Token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "EdDSA" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'EdDSA' },
   key: ed448keypair.privateKey,
-}).sign();
+}).sign()
 
 const ed25519Token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "EdDSA" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'EdDSA' },
   key: ed25519keypair.privateKey,
-}).sign();
+}).sign()
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const ed448Valid = new Jwt({
   token: ed448Token,
-  header: { alg: "EdDSA" }, // expected algorithm
+  header: { alg: 'EdDSA' }, // expected algorithm
   key: ed448keypair.publicKey,
-}).verify();
+}).verify()
 
 const ed25519Valid = new Jwt({
   token: ed25519Token,
-  header: { alg: "EdDSA" }, // expected algorithm
+  header: { alg: 'EdDSA' }, // expected algorithm
   key: ed25519keypair.publicKey,
-}).verify();
+}).verify()
 ```
 
 </details>
@@ -535,38 +646,38 @@ const ed25519Valid = new Jwt({
 - Generate a keypair:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const bytes = 256;
-const keypair = crypto.generateKeyPairSync("rsa", {
+const bytes = 256
+const keypair = crypto.generateKeyPairSync('rsa', {
   modulusLength: bytes * 8,
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs1", format: "pem" },
-});
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs1', format: 'pem' },
+})
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const signedJwt = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "RS1" }, // RS1 | RS256 | RS384 | RS512
+  data: 'Data to be signed into the token.',
+  header: { alg: 'RS1' }, // RS1 | RS256 | RS384 | RS512
   key: keypair.privateKey,
-}).sign();
+}).sign()
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const validToken = new Jwt({
   token: signedJwt,
-  header: { alg: "RS1" }, // RS1 | RS256 | RS384 | RS512
+  header: { alg: 'RS1' }, // RS1 | RS256 | RS384 | RS512
   key: keypair.publicKey,
-}).verify();
+}).verify()
 ```
 
 </details>
@@ -582,84 +693,84 @@ const validToken = new Jwt({
 - Generate a keypair:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const bytes = 256;
+const bytes = 256
 
 /** RSASSA-PSS using `SHA-256` and MGF1 with `SHA-256` */
-const rsapss256keypair = crypto.generateKeyPairSync("rsa-pss", {
+const rsapss256keypair = crypto.generateKeyPairSync('rsa-pss', {
   modulusLength: bytes * 8,
-  hashAlgorithm: "SHA-256",
-  mgf1HashAlgorithm: "SHA-256",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+  hashAlgorithm: 'SHA-256',
+  mgf1HashAlgorithm: 'SHA-256',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 
 /** RSASSA-PSS using `SHA-384` and MGF1 with `SHA-384` */
-const rsapss384keypair = crypto.generateKeyPairSync("rsa-pss", {
+const rsapss384keypair = crypto.generateKeyPairSync('rsa-pss', {
   modulusLength: bytes * 8,
-  hashAlgorithm: "SHA-384",
-  mgf1HashAlgorithm: "SHA-384",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+  hashAlgorithm: 'SHA-384',
+  mgf1HashAlgorithm: 'SHA-384',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 
 /** RSASSA-PSS using `SHA-512` and MGF1 with `SHA-512` */
-const rsapss512keypair = crypto.generateKeyPairSync("rsa-pss", {
+const rsapss512keypair = crypto.generateKeyPairSync('rsa-pss', {
   modulusLength: bytes * 8,
-  hashAlgorithm: "SHA-512",
-  mgf1HashAlgorithm: "SHA-512",
-  publicKeyEncoding: { type: "spki", format: "pem" },
-  privateKeyEncoding: { type: "pkcs8", format: "pem" },
-});
+  hashAlgorithm: 'SHA-512',
+  mgf1HashAlgorithm: 'SHA-512',
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+})
 ```
 
 - Parse and sign a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const rsapss256token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "PS256" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'PS256' },
   key: rsapss256keypair.privateKey,
-}).sign();
+}).sign()
 
 const rsapss384token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "PS384" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'PS384' },
   key: rsapss384keypair.privateKey,
-}).sign();
+}).sign()
 
 const rsapss512token = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "PS512" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'PS512' },
   key: rsapss512keypair.privateKey,
-}).sign();
+}).sign()
 ```
 
 - Parse and verify a token:
 
 ```ts
-import { Jwt } from "@alessiofrittoli/crypto-jwt";
+import { Jwt } from '@alessiofrittoli/crypto-jwt'
 
 const rsapss256Valid = new Jwt({
   token: rsapss256token,
-  header: { alg: "PS256" },
+  header: { alg: 'PS256' },
   key: rsapss256keypair.publicKey,
-}).verify();
+}).verify()
 
 const rsapss384Valid = new Jwt({
   token: rsapss384token,
-  header: { alg: "PS384" },
+  header: { alg: 'PS384' },
   key: rsapss384keypair.publicKey,
-}).verify();
+}).verify()
 
 const rsapss512Valid = new Jwt({
   token: rsapss512token,
-  header: { alg: "PS512" },
+  header: { alg: 'PS512' },
   key: rsapss512keypair.publicKey,
-}).verify();
+}).verify()
 ```
 
 </details>
@@ -673,33 +784,33 @@ Most of asymmetric key pairs allows you to set a passphrase for the Private Key.
 Let's assume we got this keypair with the following passphrase:
 
 ```ts
-import crypto from "crypto";
+import crypto from 'crypto'
 
-const bytes = 256;
-const passphrase = "my-private-key-optional-passphrase";
-const keypair = crypto.generateKeyPairSync("rsa", {
+const bytes = 256
+const passphrase = 'my-private-key-optional-passphrase'
+const keypair = crypto.generateKeyPairSync('rsa', {
   modulusLength: 256 * 8,
-  publicKeyEncoding: { type: "spki", format: "pem" },
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
   privateKeyEncoding: {
-    type: "pkcs1",
-    format: "pem",
+    type: 'pkcs1',
+    format: 'pem',
     passphrase,
-    cipher: "aes-256-cbc",
+    cipher: 'aes-256-cbc',
   },
-});
+})
 ```
 
 We can then sign a token as follow:
 
 ```ts
 const jwt = new Jwt({
-  data: "Data to be signed into the token.",
-  header: { alg: "RS1" },
+  data: 'Data to be signed into the token.',
+  header: { alg: 'RS1' },
   key: {
     key: keypair.privateKey,
     passphrase: passphrase,
   },
-});
+})
 ```
 
 ---
@@ -826,19 +937,19 @@ The `ErrorCode` enumerator can be used to handle different errors with ease.
 <summary>Example usage</summary>
 
 ```ts
-import { Exception } from "@alessiofrittoli/exception";
-import { ErrorCode } from "@alessiofrittoli/crypto-jwt/error";
+import { ErrorCode } from '@alessiofrittoli/crypto-jwt/error'
+import { Exception } from '@alessiofrittoli/exception'
 
 try {
   new Jwt({
-    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.invalid",
-  }); // will throw error with code: ErrorCode.WRONG_JWS
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.invalid',
+  }) // will throw error with code: ErrorCode.WRONG_JWS
 } catch (error) {
-  if (Exception.isException<string, ErrorCode>(error)) {
+  if (Exception.isException<ErrorCode>(error)) {
     switch (error.code) {
       case ErrorCode.WRONG_JWS:
         // malformed JWT payload
-        break;
+        break
       // ... other cases here
       default:
       // unknown error
@@ -850,78 +961,6 @@ try {
 </details>
 
 ---
-
-### Development
-
-#### Install depenendencies
-
-```bash
-npm install
-```
-
-or using `pnpm`
-
-```bash
-pnpm i
-```
-
-#### Build the source code
-
-Run the following command to test and build code for distribution.
-
-```bash
-pnpm build
-```
-
-#### [ESLint](https://www.npmjs.com/package/eslint)
-
-warnings / errors check.
-
-```bash
-pnpm lint
-```
-
-#### [Jest](https://npmjs.com/package/jest)
-
-Run all the defined test suites by running the following:
-
-```bash
-# Run tests and watch file changes.
-pnpm test:watch
-
-# Run tests in a CI environment.
-pnpm test:ci
-```
-
-- See [`package.json`](./package.json) file scripts for more info.
-
-Run tests with coverage.
-
-An HTTP server is then started to serve coverage files from `./coverage` folder.
-
-⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
-
-```bash
-test:coverage:serve
-```
-
----
-
-### Contributing
-
-Contributions are truly welcome!
-
-Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
-
-Help keep this project up to date with [GitHub Sponsor][sponsor-url].
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
----
-
-### Security
-
-If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ### Made with ☕
 
