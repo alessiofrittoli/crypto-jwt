@@ -165,6 +165,7 @@ Help keep this project up to date with [GitHub Sponsor][sponsor-url].
 #### Security
 
 If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
+
 ---
 
 ### Supported Algorithms
